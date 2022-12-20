@@ -14,13 +14,18 @@ const FetchPromise = ()=>{
 const ReturnPromises = ()=>{
     return new Promise ((resolve, reject)=>{
         // resolve({"check":"working", "not_check": "not working"})
-        reject(300)
+        reject(400)
     })
 }
 // ReturnPromises().then((data)=>{
 //     console.log(data.check)
 // })
 const awaitFunction = async()=>{
-    const log_instance = await ReturnPromises().catch((error)=>{console.log(error)})
-}
-awaitFunction()
+    try {
+        const log_instance = await ReturnPromises()    
+    } catch (error) {
+        console.log(error)        
+        }
+    }
+    
+// awaitFunction()
