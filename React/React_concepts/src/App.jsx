@@ -6,9 +6,9 @@ import USESTATE from "./Hooks/USESTATE"
 function App() { 
   return (
     <>
-    {/* <USESTATE />
-    <USEEFFECT /> */}
-    <USEREF />
+    {/* <USESTATE /> */}
+    {/* <USEEFFECT /> */}
+    {/* <USEREF /> */}
     </>
   )
 }
