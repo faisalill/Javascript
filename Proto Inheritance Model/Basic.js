@@ -19,3 +19,5 @@ const d = {
 //using Object Create
 const e = Object.create(a)
 console.log(e.FirstName)
+
+//Object.PrototypeOf(a,b) is not used much 
