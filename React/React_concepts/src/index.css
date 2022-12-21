@@ -1,0 +1,21 @@
+:root{
+    background-color: black;
+    color:white;
+    height: 100vh;
+    width: 100vh;
+    margin: 0;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+.container{
+    border: 0.1rem solid white;
+    border-radius: 0.2rem;
+    margin: 1rem;
+}
+.title{
+    text-align: center;
+    font-size: large;
+    padding: 0.2rem;
+    font-weight: bold;
+}
