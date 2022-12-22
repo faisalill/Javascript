@@ -1,3 +1,4 @@
+import CustomHooks from "./Hooks/CustomHooks"
 import USEEFFECT from "./Hooks/USEEFFECT"
 import USEMEMO from "./Hooks/USEMEMO"
 import USEREDUCER from "./Hooks/USEREDUCER"
@@ -12,7 +13,8 @@ function App() {
     {/* <USEEFFECT /> */}
     {/* <USEREF /> */}
     {/* <USEREDUCER /> */}
-    <USEMEMO />
+    {/* <USEMEMO /> */}
+    <CustomHooks />
     </>
   )
 }
