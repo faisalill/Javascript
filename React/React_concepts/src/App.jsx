@@ -1,4 +1,5 @@
 import USEEFFECT from "./Hooks/USEEFFECT"
+import USEMEMO from "./Hooks/USEMEMO"
 import USEREDUCER from "./Hooks/USEREDUCER"
 import USEREF from "./Hooks/USEREF"
 import USESTATE from "./Hooks/USESTATE"
@@ -10,7 +11,8 @@ function App() {
     {/* <USESTATE /> */}
     {/* <USEEFFECT /> */}
     {/* <USEREF /> */}
-    <USEREDUCER />
+    {/* <USEREDUCER /> */}
+    <USEMEMO />
     </>
   )
 }
