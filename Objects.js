@@ -11,36 +11,36 @@ let anotherObject = {
 }
 // Values can be accessed by either dot operator 
 // or likethis
-// console.log(anotherObject['age'])
+console.log(anotherObject['age'])
 // New values can be set by
 anotherObject.address = "....."
 // To delete a value
 delete anotherObject.name
 delete anotherObject['age']
-// console.log(anotherObject)
+console.log(anotherObject)
 
 // difference between accessing using [".."] and dot operator
 // We can access values using another expression which can't 
 // be done using dot operator --> returns undefined 
 const keyOf = "name";
-// console.log(newObject[keyOf])
+console.log(newObject[keyOf])
 // Square brackets can also be used as
 const fruit = "apple";
 let sampleObject = {
     [fruit]: "it is  fruit"
 }
-// console.log(sampleObject)
+console.log(sampleObject)
 
 // To check for a value present in an object
-// console.log("apple" in sampleObject) // Return true since it exists
+console.log("apple" in sampleObject) // Return true since it exists
 
 // Why in is used above checking hte object===undefined
 // It’s when an object property exists, but stores undefined
 let obj = {
     test: undefined
   };
-//   console.log( obj.test); // it's undefined, so - no such property?
-//   console.log( "test" in obj ); // true, the property does exist!
+  console.log( obj.test); // it's undefined, so - no such property?
+  console.log( "test" in obj ); // true, the property does exist!
 
 //   for..in loop in objects to interate over the whole object
 let testObject = {
