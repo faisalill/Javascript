@@ -37,15 +37,8 @@ collissionMap.forEach((row, index) => {
         }}))
     })
 })
-
-const image = new Image()
-image.src = './assets/pokemon-battle-map.png'
-
-const playerImage = new Image()
-playerImage.src = './assets/playerDown.png'
-
 class Sprite {
-    constructor({position, velocity, image, frames={max: 1}, sizeOffset = 0}){
+    constructor({position, velocity, image, frames={max: 1}, sizeOffset = 0, sprites}){
         this.position = position,
         this.image = image
         this.frames = {...frames, val:0, elapsed: 0}
@@ -54,6 +47,7 @@ class Sprite {
             this.width = this.image.width/ this.frames.max
             this.height = this.image.height
         }
+        this.sprites = sprites
         this.moving = false
     }
     draw(){
@@ -79,17 +73,43 @@ class Sprite {
             
     }
 }
+
+const image = new Image()
+image.src = './assets/pokemon-battle-map.png'
+
+const playerDownImage = new Image()
+playerDownImage.src = './assets/playerDown.png'
+
+const playerUpImage = new Image()
+playerUpImage.src = './assets/playerUp.png'
+
+const playerLeftImage = new Image()
+playerLeftImage.src = './assets/playerLeft.png'
+
+const playerRightImage = new Image()
+playerRightImage.src = './assets/playerRight.png'
+
 const player = new Sprite({
     position: {
         x: canvas.width/2 - 192 / 4 /2,
         y: canvas.height/2 - 68 /2
     },
-    image: playerImage,
+    image: playerDownImage,
     frames: {
         max:4
     },
-    sizeOffset:12
+    sizeOffset:12,
+    sprites: {
+        up: playerUpImage,
+        down: playerDownImage,
+        left: playerLeftImage,
+        right: playerRightImage
+    }
 })
+
+
+
+
 const background = new Sprite({
     position: {
         x: offset.x,
@@ -126,6 +146,7 @@ function checkCollision({object1, object2}){
     && object1.position.y <= object2.position.y + object2.height
     && object1.position.y + 68 - 15 >= object2.position.y)
 }
+let moving = true;
 function animate(){
     window.requestAnimationFrame(animate)
     background.draw()
@@ -134,8 +155,11 @@ function animate(){
         
     })
     player.draw()
-    let moving = true;
+    moving = true
+    player.moving = false
        if(keys.w.pressed && lastKey === 'w'){
+        player.moving = true
+        player.image = player.sprites.up
         for(let i =0; i< boundaries.length; i++){
             const boundary = boundaries[i]
             if(checkCollision({object1: player, object2: {...boundary, position: {
@@ -151,6 +175,8 @@ function animate(){
         movables.forEach(movable => movable.position.y +=2)
        }
        else if(keys.s.pressed && lastKey === 's'){
+        player.moving = true
+        player.image = player.sprites.down
         for(let i =0; i< boundaries.length; i++){
             const boundary = boundaries[i]
             if(checkCollision({object1: player, object2: {...boundary, position: {
@@ -166,6 +192,8 @@ function animate(){
         movables.forEach(movable => movable.position.y -=2)
        }
        else if(keys.a.pressed && lastKey === 'a'){
+        player.moving = true
+        player.image = player.sprites.left
         for(let i =0; i< boundaries.length; i++){
             const boundary = boundaries[i]
             if(checkCollision({object1: player, object2: {...boundary, position: {
@@ -181,6 +209,8 @@ function animate(){
         movables.forEach(movable => movable.position.x +=2)
        }
        else if(keys.d.pressed && lastKey === 'd'){
+        player.moving = true
+        player.image = player.sprites.right
         for(let i =0; i< boundaries.length; i++){
             const boundary = boundaries[i]
             if(checkCollision({object1: player, object2: {...boundary, position: {
