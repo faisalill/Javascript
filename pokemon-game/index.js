@@ -184,6 +184,14 @@ const altar = new animationSprite({image:altarImage, rows:1, columns:39, positio
 },
 sizeOffset:200})
 
+const fountainImage = new Image()
+fountainImage.src = './assets/shrine.png'
+const fountain = new animationSprite({image: fountainImage, rows:1, columns:8, position:{
+    x:0,
+    y:-710
+},
+sizeOffset:130})
+
 const background = new Sprite({
     position: {
         x: offset.x,//-463
@@ -215,7 +223,7 @@ const testBoundary = new Boundary({
     }
 })
 
-const movables = [background, ...boundaries,testWater,smith,altar];
+const movables = [background, ...boundaries,testWater,smith,altar,fountain];
 function checkCollision({object1, object2}){
     return (object1.position.x + 192/4 -20 >= object2.position.x 
     && object1.position.x <= object2.position.x + object2.width
@@ -231,6 +239,7 @@ function animate(){
         
     })
     altar.draw()
+    fountain.draw()
     player.draw()
     testWater.draw()
     smith.draw()
