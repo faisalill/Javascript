@@ -110,8 +110,10 @@ const player = new Sprite({
 const waterAnimations = new Image()
 waterAnimations.src = './assets/water_animations.png'
 
+
+
 class animationSprite {
-    constructor({image, rows,columns, position, sizeOffset}){
+    constructor({image, rows,columns, position, sizeOffset,columnToAnimate=0}){
         this.image = image
         this.rows = rows
         this.columns = columns
@@ -119,10 +121,11 @@ class animationSprite {
         this.framesElapsed = 0
         this.position = position
         this.sizeOffset = sizeOffset
+        this.columnToAnimate = columnToAnimate
     }
     draw(){
         c.drawImage(this.image,
-           this.frames*(this.image.width/this.columns),0,this.image.width/this.columns,this.image.height/this.rows,
+           this.frames*(this.image.width/this.columns),this.columnToAnimate*this.image.height/this.rows,this.image.width/this.columns,this.image.height/this.rows,
            this.position.x,this.position.y,this.image.width/this.columns + this.sizeOffset,this.image.height/this.rows + this.sizeOffset
             )
             if(this.rows >1 || this.columns >1){
@@ -161,12 +164,27 @@ class animationSprite {
     
 }
 
+
 const testWater = new animationSprite({image:waterAnimations,rows:5,columns:8,position:{
-    x: 400,
-    y: 400
+    x: 405,
+    y: 490
 },
-sizeOffset:10
+sizeOffset:13,
+columnToAnimate: 0
 })
+
+
+const bushImage = new Image()
+bushImage.src = './assets/bushAnimation.png'
+const bush = new animationSprite({image: bushImage,rows:1,columns:6,position:{
+    x:60,
+    y:235
+},
+sizeOffset:10,
+columnToAnimate: 0})
+
+
+
 const smithImage = new Image()
 smithImage.src = './assets/smith.png'
 const smith = new animationSprite({image:smithImage,rows:1, columns:8,position:{
@@ -192,6 +210,8 @@ const fountain = new animationSprite({image: fountainImage, rows:1, columns:8, p
 },
 sizeOffset:130})
 
+
+
 const background = new Sprite({
     position: {
         x: offset.x,//-463
@@ -216,14 +236,72 @@ const keys = {
         pressed: false
     },
 }
-const testBoundary = new Boundary({
-    position: {
-        x: 400,
-        y: 400
-    }
+// const testBoundary = new Boundary({
+//     position: {
+//         x: 400,
+//         y: 400
+//     }
+// })
+let stuffToDraw = [altar,fountain,testWater,smith,bush]
+let movables = [background, ...boundaries,...stuffToDraw];
+
+function addAnimations(image,rows,columns,position,sizeOffset,columnToAnimate){
+    const newNatureAnimation = new animationSprite({
+      image: image,
+      rows: rows, 
+      columns: columns,
+      position: position,
+      sizeOffset: sizeOffset,
+      columnToAnimate: columnToAnimate,    
+    })
+     stuffToDraw.push(newNatureAnimation)
+     movables.push(newNatureAnimation)
+  }
+
+ const waterAnimationData = {
+    waterAnimationPositions:   [
+        {
+            x:370,
+            y:40
+        },
+        {
+            x:40,
+            y:-190
+        },
+        {
+            x:140,
+            y:-60
+        },
+        {
+            x:680,
+            y:-60
+        },
+        {
+            x:880,
+            y:-220
+        },
+        {
+            x:800,
+            y:0
+        },
+        {
+            x:770,
+            y:520
+        },
+        {
+            x:110,
+            y:520
+        }
+      ],
+ }
+
+waterAnimationData.waterAnimationPositions.forEach(element => {
+    addAnimations(waterAnimations,5,8,{x: element.x, y: element.y},13,element.rowToAnimate? element.rowToAnimate : Math.floor(Math.random()*2))
 })
 
-const movables = [background, ...boundaries,testWater,smith,altar,fountain];
+// addAnimations(waterAnimations,5,8,{x:370,y:40},13,0);
+// addAnimations(waterAnimations,5,8,{x:370,y:40},13,0);
+
 function checkCollision({object1, object2}){
     return (object1.position.x + 192/4 -20 >= object2.position.x 
     && object1.position.x <= object2.position.x + object2.width
@@ -238,12 +316,15 @@ function animate(){
         boundary.draw()
         
     })
-    altar.draw()
-    fountain.draw()
-    player.draw()
-    testWater.draw()
-    smith.draw()
     
+    stuffToDraw.forEach(object => object.draw())
+    player.draw()
+    // altar.draw()
+    // fountain.draw()
+    // player.draw()
+    // testWater.draw()
+    // smith.draw()
+    // bush.draw()
     moving = true
     player.moving = false
        if(keys.w.pressed && lastKey === 'w'){
@@ -278,7 +359,7 @@ function animate(){
             }
         }
         if(moving)
-        movables.forEach(movable => movable.position.y -=20)
+        movables.forEach(movable => movable.position.y -=2)
        }
        else if(keys.a.pressed && lastKey === 'a'){
         player.moving = true
