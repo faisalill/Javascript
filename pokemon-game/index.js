@@ -110,6 +110,53 @@ const player = new Sprite({
 const waterAnimations = new Image()
 waterAnimations.src = './assets/water_animations.png'
 
+class islandAnimation{
+    constructor({image,position}){
+        this.image = image
+        this.position = position
+        this.framesElapsed = 0
+        this.frames = 0
+    }
+    draw(){
+        c.drawImage(
+            this.image,
+            // 0,// this.image.width/8/18*1,
+            // this.image.height*0,
+            // this.image.width/8/18*1,
+            // this.image.height/2/9*2,
+            // this.position.x,
+            // this.position.y,
+            // this.image.width/8/18*1,
+            // this.image.height/2/9*2
+            9+this.image.width/8*this.frames,
+            0,
+            29,
+            20,
+            this.position.x,
+            this.position.y,
+            58,
+            38
+        )
+        if(1){
+            this.framesElapsed++
+         }
+         if(this.framesElapsed %10 === 0){
+             if(this.frames < 7){
+                 this.frames++
+             }
+             else{
+                 this.frames = 0
+             }
+         }
+    }
+}
+
+const islandWaterImage = new Image()
+islandWaterImage.src = './assets/Water Tileset.png'
+const islandWaterAnimation = new islandAnimation({image: islandWaterImage, position: {
+    x: 20,
+    y: 461
+}})
 
 
 class animationSprite {
@@ -122,11 +169,17 @@ class animationSprite {
         this.position = position
         this.sizeOffset = sizeOffset
         this.columnToAnimate = columnToAnimate
-    }
+    }   
     draw(){
         c.drawImage(this.image,
-           this.frames*(this.image.width/this.columns),this.columnToAnimate*this.image.height/this.rows,this.image.width/this.columns,this.image.height/this.rows,
-           this.position.x,this.position.y,this.image.width/this.columns + this.sizeOffset,this.image.height/this.rows + this.sizeOffset
+           this.frames*(this.image.width/this.columns),
+           this.columnToAnimate*this.image.height/this.rows,
+           this.image.width/this.columns,
+           this.image.height/this.rows,
+           this.position.x,
+           this.position.y,
+           this.image.width/this.columns + this.sizeOffset,
+           this.image.height/this.rows + this.sizeOffset
             )
             if(this.rows >1 || this.columns >1){
                this.framesElapsed++
@@ -172,6 +225,24 @@ const testWater = new animationSprite({image:waterAnimations,rows:5,columns:8,po
 sizeOffset:13,
 columnToAnimate: 0
 })
+
+const chaliceImage  = new Image()
+chaliceImage.src = './assets/chalice.png'
+
+const chalice1 = new animationSprite({image: chaliceImage, rows:1, columns:8,position:{
+    x:315,
+    y:-490
+},
+sizeOffset:50,
+columnToAnimate:0})
+
+const chalice2 = new animationSprite({image: chaliceImage, rows:1, columns:8,position:{
+    x:560,
+    y:-490
+},
+sizeOffset:50,
+columnToAnimate:0})
+
 
 
 const bushImage = new Image()
@@ -242,7 +313,7 @@ const keys = {
 //         y: 400
 //     }
 // })
-let stuffToDraw = [altar,fountain,testWater,smith,bush]
+let stuffToDraw = [altar,fountain,testWater,smith,bush,chalice1,chalice2,islandWaterAnimation]
 let movables = [background, ...boundaries,...stuffToDraw];
 
 function addAnimations(image,rows,columns,position,sizeOffset,columnToAnimate){
