@@ -269,8 +269,18 @@ function addAnimations(image,rows,columns,position,sizeOffset,columnToAnimate){
             y:-190
         },
         {
+            x:40,
+            y:-280,
+            rowToAnimate: 3
+        },
+        {
             x:140,
             y:-60
+        },
+        {
+            x:240,
+            y:10,
+            rowToAnimate:3
         },
         {
             x:680,
@@ -279,6 +289,21 @@ function addAnimations(image,rows,columns,position,sizeOffset,columnToAnimate){
         {
             x:880,
             y:-220
+        },
+        {
+            x:950,
+            y:-250,
+            rowToAnimate: 2
+        },
+        {
+            x:950,
+            y:100,
+            rowToAnimate: 2
+        },
+        {
+            x:950,
+            y:-100,
+            rowToAnimate: 2
         },
         {
             x:800,
@@ -290,8 +315,58 @@ function addAnimations(image,rows,columns,position,sizeOffset,columnToAnimate){
         },
         {
             x:110,
-            y:520
-        }
+            y:520,
+        },
+        {
+            x:70,
+            y:490,
+            rowToAnimate:2
+        },
+        {
+            x:920,
+            y:540,
+            rowToAnimate:2
+        },
+        {
+            x:595,
+            y:490,
+            rowToAnimate:2
+        },
+        {
+            x:390,
+            y:530,
+            rowToAnimate:2
+        },
+        {
+            x:230,
+            y:-85,
+            rowToAnimate:3
+        },
+        {
+            x:830,
+            y:-45,
+            rowToAnimate:3
+        },
+        {
+            x:380,
+            y:-50,
+            rowToAnimate:2
+        },
+        {
+            x:580,
+            y:-90,
+            rowToAnimate:3
+        },
+        {
+            x:590,
+            y:0,
+            rowToAnimate:2
+        },
+        {
+            x:40,
+            y:60,
+            rowToAnimate:2
+        },
       ],
  }
 
@@ -359,7 +434,7 @@ function animate(){
             }
         }
         if(moving)
-        movables.forEach(movable => movable.position.y -=2)
+        movables.forEach(movable => movable.position.y -=20)
        }
        else if(keys.a.pressed && lastKey === 'a'){
         player.moving = true
