@@ -111,11 +111,12 @@ const waterAnimations = new Image()
 waterAnimations.src = './assets/water_animations.png'
 
 class islandAnimation{
-    constructor({image,position}){
+    constructor({image,position,rowToAnimate=0}){
         this.image = image
         this.position = position
         this.framesElapsed = 0
         this.frames = 0
+        this.rowToAnimate = rowToAnimate
     }
     draw(){
         c.drawImage(
@@ -129,7 +130,7 @@ class islandAnimation{
             // this.image.width/8/18*1,
             // this.image.height/2/9*2
             9+this.image.width/8*this.frames,
-            0,
+            this.rowToAnimate,
             29,
             20,
             this.position.x,
@@ -151,12 +152,35 @@ class islandAnimation{
     }
 }
 
+const islandAnimationArray = []
+
 const islandWaterImage = new Image()
 islandWaterImage.src = './assets/Water Tileset.png'
-const islandWaterAnimation = new islandAnimation({image: islandWaterImage, position: {
-    x: 20,
-    y: 461
-}})
+for(let i = 0; i<=16; i++){
+    const islandWaterAnimation1 = new islandAnimation({image: islandWaterImage, position: {
+        x: 10+(58*i),
+        y: 461
+    }})
+    islandAnimationArray.push(islandWaterAnimation1)
+}
+for(let i = 0; i<=3; i++){
+    const islandWaterAnimation1 = new islandAnimation({image: islandWaterImage, position: {
+        x: 180+(58*i),
+        y: -115
+    },
+    rowToAnimate:islandWaterImage.height/2
+})
+    islandAnimationArray.push(islandWaterAnimation1)
+}
+for(let i = 0; i<=3; i++){
+    const islandWaterAnimation1 = new islandAnimation({image: islandWaterImage, position: {
+        x: 590+(58*i),
+        y: -115
+    },
+    rowToAnimate:islandWaterImage.height/2
+})
+    islandAnimationArray.push(islandWaterAnimation1)
+}
 
 
 class animationSprite {
@@ -313,7 +337,7 @@ const keys = {
 //         y: 400
 //     }
 // })
-let stuffToDraw = [altar,fountain,testWater,smith,bush,chalice1,chalice2,islandWaterAnimation]
+let stuffToDraw = [altar,fountain,testWater,smith,bush,chalice1,chalice2,...islandAnimationArray]
 let movables = [background, ...boundaries,...stuffToDraw];
 
 function addAnimations(image,rows,columns,position,sizeOffset,columnToAnimate){
