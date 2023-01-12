@@ -11,9 +11,25 @@
     padding: 0;
     background-color: black;
   }
+  .parent-div{
+    display: inline-block;
+    position: relative;
+  }
+  .overlay{
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    top: 0;
+    pointer-events: none;
+    background-color: rgba(0,0,0,0);
+  }
 </style>
 <body>
+  <div class="parent-div">
+    <div class="overlay"></div>
   <canvas></canvas>
+</div>
   <script src="./data/collissions.js"></script>
   <script src="./index.js"></script>
 </body>

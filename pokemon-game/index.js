@@ -354,6 +354,7 @@ sizeOffset:0,
 columnToAnimate:0
 })
 
+
 const chaliceImage  = new Image()
 chaliceImage.src = './assets/chalice.png'
 
@@ -583,8 +584,12 @@ function checkCollision({object1, object2}){
     && object1.position.y + 68 - 15 >= object2.position.y)
 }
 let moving = true;
+const battle = {
+    initiated: false
+}
 function animate(){
     window.requestAnimationFrame(animate)
+    
     background.draw()
     boundaries.forEach(boundary =>{
         boundary.draw()
@@ -593,14 +598,16 @@ function animate(){
     
     stuffToDraw.forEach(object => object.draw())
     player.draw()
-    // altar.draw()
-    // fountain.draw()
-    // player.draw()
-    // testWater.draw()
-    // smith.draw()
-    // bush.draw()
     moving = true
     player.moving = false
+    if(battle.initiated) return 
+    if(background.position.y === -138){
+        if(background.position.x>=-539 && background.position.x <=367){
+            // console.log("battle started")
+            battle.initiated = true
+        }
+    }
+    
        if(keys.w.pressed && lastKey === 'w'){
         player.moving = true
         player.image = player.sprites.up
@@ -616,7 +623,7 @@ function animate(){
             }
         }
         if(moving)
-        movables.forEach(movable => movable.position.y +=20)
+        movables.forEach(movable => movable.position.y +=2)
        }
        else if(keys.s.pressed && lastKey === 's'){
         player.moving = true
@@ -633,7 +640,7 @@ function animate(){
             }
         }
         if(moving)
-        movables.forEach(movable => movable.position.y -=20)
+        movables.forEach(movable => movable.position.y -=2)
        }
        else if(keys.a.pressed && lastKey === 'a'){
         player.moving = true
