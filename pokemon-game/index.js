@@ -165,12 +165,13 @@ for(let i = 0; i<=16; i++){
     }})
     islandAnimationArray.push(islandWaterAnimation1)
 }
+const dryLandYCoordinate = 80
 for(let i = 0; i<=3; i++){
     const islandWaterAnimation1 = new islandAnimation({image: islandWaterImage, position: {
         x: 180+(58*i),
         y: -115
     },
-    rowToAnimate:islandWaterImage.height/2
+    rowToAnimate:dryLandYCoordinate
 })
     islandAnimationArray.push(islandWaterAnimation1)
 }
@@ -179,7 +180,7 @@ for(let i = 0; i<=3; i++){
         x: 590+(58*i),
         y: -115
     },
-    rowToAnimate:islandWaterImage.height/2
+    rowToAnimate:dryLandYCoordinate
 })
     islandAnimationArray.push(islandWaterAnimation1)
 }
@@ -188,7 +189,7 @@ for(let i = 0; i<=2; i++){
         x: 870+(58*i),
         y: -310
     },
-    rowToAnimate:islandWaterImage.height/2
+    rowToAnimate:dryLandYCoordinate
 })
     islandAnimationArray.push(islandWaterAnimation1)
 }
@@ -197,7 +198,7 @@ for(let i = 0; i<=1; i++){
         x: 0+(58*i),
         y: -310
     },
-    rowToAnimate:islandWaterImage.height/2
+    rowToAnimate:dryLandYCoordinate
 })
     islandAnimationArray.push(islandWaterAnimation1)
 }
@@ -343,6 +344,16 @@ sizeOffset:13,
 columnToAnimate: 0
 })
 
+const arceusImage = new Image()
+arceusImage.src = './assets/arceusSpritesheet.png'
+const arceus = new animationSprite({image: arceusImage, rows:4, columns:4, position:{
+    x: 430,
+    y:-700
+},
+sizeOffset:0,
+columnToAnimate:0
+})
+
 const chaliceImage  = new Image()
 chaliceImage.src = './assets/chalice.png'
 
@@ -430,7 +441,7 @@ const keys = {
 //         y: 400
 //     }
 // })
-let stuffToDraw = [altar,fountain,testWater,smith,bush,chalice1,chalice2,...islandAnimationArray]
+let stuffToDraw = [altar,fountain,testWater,smith,bush,chalice1,chalice2,arceus,...islandAnimationArray]
 let movables = [background, ...boundaries,...stuffToDraw];
 
 function addAnimations(image,rows,columns,position,sizeOffset,columnToAnimate){
