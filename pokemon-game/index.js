@@ -588,8 +588,7 @@ const battle = {
     initiated: false
 }
 function animate(){
-    window.requestAnimationFrame(animate)
-    
+   const firstScene =  window.requestAnimationFrame(animate)
     background.draw()
     boundaries.forEach(boundary =>{
         boundary.draw()
@@ -598,13 +597,35 @@ function animate(){
     
     stuffToDraw.forEach(object => object.draw())
     player.draw()
+    console.log(firstScene)
     moving = true
     player.moving = false
     if(battle.initiated) return 
     if(background.position.y === -138){
         if(background.position.x>=-539 && background.position.x <=367){
             // console.log("battle started")
+            window.cancelAnimationFrame(firstScene)
             battle.initiated = true
+            
+            gsap.to("#overlay", {
+                opacity:1,
+                repeat:6,
+                yoyo: true,
+                duration: 0.3,
+                onComplete(){
+                 gsap.to('#overlay',{
+                    opacity:1,
+                    duration:0.3,
+                    onComplete(){
+                        battleScene()
+                        gsap.to('#overlay',{
+                            opacity: 0,
+                            duration:0.3
+                        })
+                    }
+                 })
+                }
+            })
         }
     }
     
@@ -679,6 +700,28 @@ function animate(){
 
 }
 animate()
+// const testWater = new animationSprite({image:waterAnimations,rows:5,columns:8,position:{
+//     x: 405,
+//     y: 490
+// },
+// sizeOffset:13,
+// columnToAnimate: 0
+// })
+const battleBackgroundImage = new Image()
+battleBackgroundImage.src = './assets/battleBackground.jpg'
+const battleBackground = new animationSprite({image: battleBackgroundImage,
+rows:1, columns:1, position:{
+    x:0,
+    y:0
+},
+sizeOffset:-100,
+columnToAnimate:0
+})
+function battleScene(){
+    window.requestAnimationFrame(battleScene)
+    battleBackground.draw()
+}
+
 let lastKey = ''
 window.addEventListener('keydown', (e)=>{
     switch(e.key){
