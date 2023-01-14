@@ -34,6 +34,8 @@ const attacks = {
             x:0,
             y:20
         },
-        projectile: 'None'
+        projectile: 'Yes',
+        projectileName: 'ExplosionProjectile12F',
+        projectileFrames:12
     }
 }
