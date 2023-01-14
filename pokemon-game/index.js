@@ -336,8 +336,8 @@ class animationSprite {
                 var checkAttackImage = new Image()
                 checkAttackImage.src = `./assets/attacks/${attack.effect}.png`//'./assets/attacks/EnergyBallBlast14F.png'
                 var checkAttack = new animationSprite({image:checkAttackImage,rows:1,columns:attack.effectFrames,position:{
-                    x:receiver.position.x-120,
-                    y:receiver.position.y-30
+                    x:receiver.position.x-120+attack.offset.x,
+                    y:receiver.position.y-30+attack.offset.y
                 },
                 sizeOffset: -200,
                 animationSpeed:5,
@@ -801,7 +801,23 @@ const Buttons = document.querySelectorAll('button')
 // // })
 // console.log(Buttons)
 // })
+const attackType = document.querySelector('#attackType')
+
 Buttons.forEach((button)=>{
+    button.addEventListener('mouseover',()=>{
+        if(button.name === 'Tackle'){
+            attackType.innerHTML=attacks.Tackle.type
+          }
+           if(button.name === 'EnergyBall'){
+            attackType.innerHTML=attacks.EnergyBall.type
+          }
+          if(button.name === 'Explosion'){
+            attackType.innerHTML=attacks.Explosion.type
+          }
+    })
+    button.addEventListener('mouseleave',()=>{
+        attackType.innerHTML= 'Attack Type'
+    })
     button.addEventListener('click',()=>{
        if(button.name === 'Tackle'){
         megaMewtwo.attack({
@@ -815,7 +831,12 @@ Buttons.forEach((button)=>{
             receiver: arceusDark
         })
        }
-       
+       if(button.name === 'Explosion'){
+        megaMewtwo.attack({
+            attack: attacks.Explosion,
+            receiver: arceusDark
+        })
+      }
     })
 })
 const attackButton = document.querySelector

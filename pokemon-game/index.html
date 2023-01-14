@@ -49,11 +49,12 @@
         background-color: rgba(0, 0, 0, 0);
         color: white;
         border: 0;
-        font-size: 16px;
+        font-size: 15px;
       }
       .movesBar button:hover{
         background-color: rgba(0, 0, 0, 0.5);
         transition: 80ms ease-in-out;
+        
       }
       .attackTypeBar{
         display: flex;
@@ -119,10 +120,11 @@
       <div class="attackBar">
         <div class="movesBar">
           <button class="tackleButton" name="Tackle">Tackle</button>
-          <button name="EnergyBall">Energy Ball</button>
+          <button name="EnergyBall">Energy Blast</button>
+          <button name="Explosion">Explosion</button>
         </div>
         <div class="attackTypeBar">
-          <p>Attack Type</p>
+          <p id="attackType">Attack Type</p>
         </div>
       </div>
     </div>
