@@ -7,7 +7,8 @@ const attacks = {
         offset:{
             x:0,
             y:0
-        }
+        },
+        projectile: 'None'
     },
     EnergyBall:{
         name: 'Energy Ball',
@@ -17,8 +18,11 @@ const attacks = {
         effectFrames: 14,
         offset:{
             x:0,
-            y:0
-        }
+            y:-10
+        },
+        projectile: 'Yes',
+        projectileName: 'EnergyBall12F',
+        projectileFrames: 12
     },
     Explosion:{
         name:'Explosion',
@@ -29,6 +33,7 @@ const attacks = {
         offset:{
             x:0,
             y:20
-        }
+        },
+        projectile: 'None'
     }
 }
