@@ -720,7 +720,7 @@ columnToAnimate:0
 const arceusDarkImage = new Image()
 arceusDarkImage.src = './assets/DarkArceusSpriteSheet.png'
 const arceusDark = new animationSprite({image: arceusDarkImage,columns:89,rows:1,position:{
-    x:860,
+    x:800,
     y:290
 },
 sizeOffset:30,
@@ -732,10 +732,10 @@ megaMewtwoImage.src = './assets/megaMewtwoY.png'
 const megaMewtwo = new animationSprite({image:megaMewtwoImage,
 rows:1,columns:89,position:{
     x:110,
-    y:310
+    y:312
 },
-sizeOffset:70,
-animationSpeed:1,
+sizeOffset:60,
+animationSpeed:1.5,
 columnToAnimate:0})
 
 function battleScene(){
