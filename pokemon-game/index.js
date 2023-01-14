@@ -278,7 +278,7 @@ for(let i = 0; i<=5; i++){
 
 
 class animationSprite {
-    constructor({image, rows,columns, position, sizeOffset,columnToAnimate=0,animationSpeed=10}){
+    constructor({image, rows,columns, position, sizeOffset,columnToAnimate=0,animationSpeed=10, opacity = 1}){
         this.image = image
         this.rows = rows
         this.columns = columns
@@ -288,8 +288,11 @@ class animationSprite {
         this.sizeOffset = sizeOffset
         this.columnToAnimate = columnToAnimate
         this.animationSpeed = animationSpeed
+        this.opacity = opacity
     }   
     draw(){
+        c.save()
+        c.globalAlpha = this.opacity
         c.drawImage(this.image,
            this.frames*(this.image.width/this.columns),
            this.columnToAnimate*this.image.height/this.rows,
@@ -300,6 +303,7 @@ class animationSprite {
            this.image.width/this.columns + this.sizeOffset,
            this.image.height/this.rows + this.sizeOffset
             )
+            c.restore()
             if(this.rows >1 || this.columns >1){
                this.framesElapsed++
             }
@@ -312,26 +316,40 @@ class animationSprite {
                 }
             }
         }
+       attack({attack,receiver}){
+        const sequence = gsap.timeline()
 
-        // if(this.frames.max >1){
-        //     this.frames.elapsed++
-        // }
-        // if(this.frames.elapsed % 10 ===0){
-        //     if(this.frames.val < this.frames.max -1) this.frames.val++
-        //     else this.frames.val = 0
-        // }
-
-        // c.drawImage(this.image,
-        //     this.frames.val * this.width,
-        //     0,
-        //     this.image.width/this.frames.max, 
-        //     this.image.height,
-        //     this.position.x,
-        //     this.position.y,
-        //     this.image.width/this.frames.max - this.sizeOffset ,
-        //     this.image.height - this.sizeOffset)
-        // }
-            
+        sequence.to(this.position,{
+            x:this.position.x-30,
+            // y:this.position.y-20
+        }).to(this.position,{
+            x:this.position.x + 60,
+            // y:this.position.y-40,
+            duration: 0.1,
+            onComplete(){
+                gsap.to('#enemyHealthBar',{
+                    width: '50%'
+                })
+                gsap.to(receiver.position,{
+                   x: receiver.position.x + 10,
+                   yoyo :true,
+                   repeat: 5,
+                   duration: 0.075
+                })
+                gsap.to(receiver,{
+                    opacity:0,
+                    repeat:5,
+                    yoyo:true,
+                    duration:0.075,
+                })
+            }
+        })
+        .to(this.position,{
+            x:this.position.x,
+            // y:this.position.y
+        })
+       }
+       
             
     
 }
@@ -748,8 +766,16 @@ battleScene()
 
 const tackleButton = document.querySelector('.tackleButton')
 tackleButton.addEventListener('click',()=>{
-    console.log("tackle button clicked")
+    megaMewtwo.attack({attack:{
+        name: "Tackle",
+        damage: 10,
+        type: 'Normal'
+    },
+    receiver: arceusDark
 })
+})
+
+const attackButton = document.querySelector
 
 let lastKey = ''
 window.addEventListener('keydown', (e)=>{
