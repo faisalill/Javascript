@@ -745,6 +745,12 @@ function battleScene(){
     megaMewtwo.draw()
 }
 battleScene()
+
+const tackleButton = document.querySelector('.tackleButton')
+tackleButton.addEventListener('click',()=>{
+    console.log("tackle button clicked")
+})
+
 let lastKey = ''
 window.addEventListener('keydown', (e)=>{
     switch(e.key){
