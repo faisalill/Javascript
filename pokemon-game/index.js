@@ -289,6 +289,7 @@ class animationSprite {
         this.columnToAnimate = columnToAnimate
         this.animationSpeed = animationSpeed
         this.opacity = opacity
+        this.health = 100
     }   
     draw(){
         c.save()
@@ -317,18 +318,27 @@ class animationSprite {
             }
         }
        attack({attack,receiver}){
+        let movementDistance = -30;
+        this.health -= attack.damage
+        let receivingParty = '#playerHealth'
+        if(receiver === arceusDark){
+           movementDistance = 30
+           receivingParty='#enemyHealth'
+        }
+        
         const sequence = gsap.timeline()
 
         sequence.to(this.position,{
-            x:this.position.x-30,
+            x:this.position.x-movementDistance,
             // y:this.position.y-20
         }).to(this.position,{
-            x:this.position.x + 60,
+            x:this.position.x + movementDistance,
             // y:this.position.y-40,
             duration: 0.1,
-            onComplete(){
-                gsap.to('#enemyHealthBar',{
-                    width: '50%'
+            onComplete:() => {
+                gsap.to(`${receivingParty}`,{
+                    width: this.health  + '%',
+                    
                 })
                 gsap.to(receiver.position,{
                    x: receiver.position.x + 10,
@@ -764,17 +774,30 @@ function battleScene(){
 }
 battleScene()
 
-const tackleButton = document.querySelector('.tackleButton')
-tackleButton.addEventListener('click',()=>{
-    megaMewtwo.attack({attack:{
-        name: "Tackle",
-        damage: 10,
-        type: 'Normal'
-    },
-    receiver: arceusDark
+const Buttons = document.querySelectorAll('button')
+// Buttons.addEventListener('click',()=>{
+// //     megaMewtwo.attack({attack:attacks.Tackle,
+// //     receiver: arceusDark
+// // })
+// console.log(Buttons)
+// })
+Buttons.forEach((button)=>{
+    button.addEventListener('click',()=>{
+       if(button.name === 'Tackle'){
+        megaMewtwo.attack({
+            attack: attacks.Tackle,
+            receiver: arceusDark
+        })
+       }
+       if(button.name === 'EnergyBall'){
+        megaMewtwo.attack({
+            attack: attacks.EnergyBall,
+            receiver: arceusDark
+        })
+       }
+       
+    })
 })
-})
-
 const attackButton = document.querySelector
 
 let lastKey = ''
