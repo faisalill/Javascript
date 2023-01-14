@@ -278,7 +278,7 @@ for(let i = 0; i<=5; i++){
 
 
 class animationSprite {
-    constructor({image, rows,columns, position, sizeOffset,columnToAnimate=0}){
+    constructor({image, rows,columns, position, sizeOffset,columnToAnimate=0,animationSpeed=10}){
         this.image = image
         this.rows = rows
         this.columns = columns
@@ -287,6 +287,7 @@ class animationSprite {
         this.position = position
         this.sizeOffset = sizeOffset
         this.columnToAnimate = columnToAnimate
+        this.animationSpeed = animationSpeed
     }   
     draw(){
         c.drawImage(this.image,
@@ -302,7 +303,7 @@ class animationSprite {
             if(this.rows >1 || this.columns >1){
                this.framesElapsed++
             }
-            if(this.framesElapsed %10 === 0){
+            if(this.framesElapsed %this.animationSpeed === 0){
                 if(this.frames < this.columns -1){
                     this.frames++
                 }
@@ -699,14 +700,10 @@ function animate(){
        }
 
 }
-animate()
-// const testWater = new animationSprite({image:waterAnimations,rows:5,columns:8,position:{
-//     x: 405,
-//     y: 490
-// },
-// sizeOffset:13,
-// columnToAnimate: 0
-// })
+
+// animate()
+
+
 const battleBackgroundImage = new Image()
 battleBackgroundImage.src = './assets/battleBackground.jpg'
 const battleBackground = new animationSprite({image: battleBackgroundImage,
@@ -717,11 +714,24 @@ rows:1, columns:1, position:{
 sizeOffset:-100,
 columnToAnimate:0
 })
+
+
+
+const arceusDarkImage = new Image()
+arceusDarkImage.src = './assets/DarkArceusSpriteSheet.png'
+const arceusDark = new animationSprite({image: arceusDarkImage,columns:89,rows:1,position:{
+    x:860,
+    y:310
+},
+sizeOffset:10,
+columnToAnimate:0,
+animationSpeed:1 })
 function battleScene(){
     window.requestAnimationFrame(battleScene)
     battleBackground.draw()
+    arceusDark.draw()
 }
-
+battleScene()
 let lastKey = ''
 window.addEventListener('keydown', (e)=>{
     switch(e.key){
