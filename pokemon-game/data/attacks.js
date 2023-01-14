@@ -9,6 +9,7 @@ const attacks = {
         name: 'Energy Ball',
         damage:30,
         type: 'Psychic',
-        effect: ['EnergyBall12F','EnergyBallBlast14F']
+        effect: 'EnergyBallBlast14F',
+        effectFrames: 14
     }
 }

@@ -276,7 +276,7 @@ for(let i = 0; i<=5; i++){
     islandAnimationArray.push(islandWaterAnimation1)
 }
 
-
+const battleSceneToDraw = []
 class animationSprite {
     constructor({image, rows,columns, position, sizeOffset,columnToAnimate=0,animationSpeed=10, opacity = 1}){
         this.image = image
@@ -331,6 +331,22 @@ class animationSprite {
         sequence.to(this.position,{
             x:this.position.x-movementDistance,
             // y:this.position.y-20
+            onComplete(){
+               if(attack.effect!=='None'){
+                var checkAttackImage = new Image()
+                checkAttackImage.src = `./assets/attacks/${attack.effect}.png`//'./assets/attacks/EnergyBallBlast14F.png'
+                var checkAttack = new animationSprite({image:checkAttackImage,rows:1,columns:attack.effectFrames,position:{
+                    x:receiver.position.x-120,
+                    y:receiver.position.y-30
+                },
+                sizeOffset: -200,
+                animationSpeed:5,
+                columnToAnimate:0})
+                battleSceneToDraw.push(checkAttack)
+                setTimeout(()=>{ battleSceneToDraw.pop()},1000)
+                           
+               } }
+            
         }).to(this.position,{
             x:this.position.x + movementDistance,
             // y:this.position.y-40,
@@ -338,7 +354,6 @@ class animationSprite {
             onComplete:() => {
                 gsap.to(`${receivingParty}`,{
                     width: this.health  + '%',
-                    
                 })
                 gsap.to(receiver.position,{
                    x: receiver.position.x + 10,
@@ -357,6 +372,7 @@ class animationSprite {
         .to(this.position,{
             x:this.position.x,
             // y:this.position.y
+            
         })
        }
        
@@ -766,11 +782,15 @@ sizeOffset:60,
 animationSpeed:1.5,
 columnToAnimate:0})
 
+
 function battleScene(){
     window.requestAnimationFrame(battleScene)
     battleBackground.draw()
     arceusDark.draw()
     megaMewtwo.draw()
+    battleSceneToDraw.forEach((element)=>{
+        element.draw()
+    })
 }
 battleScene()
 
