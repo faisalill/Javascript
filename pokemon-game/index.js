@@ -721,15 +721,28 @@ const arceusDarkImage = new Image()
 arceusDarkImage.src = './assets/DarkArceusSpriteSheet.png'
 const arceusDark = new animationSprite({image: arceusDarkImage,columns:89,rows:1,position:{
     x:860,
-    y:310
+    y:290
 },
-sizeOffset:10,
+sizeOffset:30,
 columnToAnimate:0,
 animationSpeed:1 })
+
+const megaMewtwoImage = new Image()
+megaMewtwoImage.src = './assets/megaMewtwoY.png'
+const megaMewtwo = new animationSprite({image:megaMewtwoImage,
+rows:1,columns:89,position:{
+    x:110,
+    y:310
+},
+sizeOffset:70,
+animationSpeed:1,
+columnToAnimate:0})
+
 function battleScene(){
     window.requestAnimationFrame(battleScene)
     battleBackground.draw()
     arceusDark.draw()
+    megaMewtwo.draw()
 }
 battleScene()
 let lastKey = ''
