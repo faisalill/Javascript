@@ -335,6 +335,7 @@ class animationSprite {
                             onComplete(){
                                 var healthBarContianer  = document.querySelectorAll('.healthBarContainer')
                                 var attackBarContianer  = document.querySelector('.attackBar')
+                                var endingScreen = document.querySelector('#endingScreen')
                                 gsap.to(healthBarContianer,{
                                     display: 'none'
                                    })
@@ -342,10 +343,12 @@ class animationSprite {
                                     display: 'none'
                                    })
                                cancelAnimationFrame(battleSceneId)
-                               
-                               gsap.to('#overlay',{
-                                opacity:0
+                               gsap.to(endingScreen,{
+                                display: 'block'
                                })
+                            //    gsap.to('#overlay',{
+                            //     opacity:0
+                            //    })
                             }
                         })
                     })
