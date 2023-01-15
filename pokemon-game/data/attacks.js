@@ -12,7 +12,7 @@ const attacks = {
     },
     EnergyBall:{
         name: 'Energy Ball',
-        damage:30,
+        damage:25,
         type: 'Electric',
         effect: 'EnergyBallBlast14F',
         effectFrames: 14,
@@ -26,7 +26,7 @@ const attacks = {
     },
     Explosion:{
         name:'Explosion',
-        damage:30,
+        damage:20,
         type:'Fire',
         effect:'Explosion16F',
         effectFrames:16,
@@ -40,7 +40,7 @@ const attacks = {
     },
     WaterPulse:{
         name:'Water Pulse',
-        damage:30,
+        damage:15,
         type:'Water',
         effect:'WaterEffect13F',
         effectFrames: 13,

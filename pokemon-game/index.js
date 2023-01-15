@@ -290,7 +290,7 @@ class animationSprite {
         this.columnToAnimate = columnToAnimate
         this.animationSpeed = animationSpeed
         this.opacity = opacity
-        this.health = 100
+        this.health = 200
     }   
     draw(){
         c.save()
@@ -320,6 +320,8 @@ class animationSprite {
         }
        attack({attack,receiver,attacker}){
         const dialogue = document.querySelector('#dialogueBox')
+        const playerHealthBar = document.querySelector('#playerHealth')
+        const enemyHealthBar = document.querySelector('#enemyHealth')
         dialogue.style.display = 'block'
         let attackerName = '';
         if(receiver === arceusDark){
@@ -328,18 +330,14 @@ class animationSprite {
         else attackerName = 'Arceus'
         dialogue.innerHTML = `${attackerName} used ${attack.name}`
         let movementDistance = -30;
-        this.health -= attack.damage
-        let receivingParty = '#playerHealth'
+        receiver.health -= attack.damage
+        // let receivingParty = '#playerHealth'
         if(receiver === arceusDark){
            movementDistance = 30
-           console.log('mewtwo attacking')
-           receivingParty='#enemyHealth'
+        //    console.log('mewtwo attacking')
+        //    receivingParty='#enemyHealth'
         }
-        if(receiver === megaMewtwo){
-            movementDistance = -30
-            console.log("arceus is attacking")
-            receivingParty = '#playerHealth'
-        }
+        
         switch(attack.name){
             case 'Tackle':
                 const sequence = gsap.timeline()
@@ -354,8 +352,14 @@ class animationSprite {
                     // y:this.position.y-40,
                     duration: 0.1,
                     onComplete:() => {
-                        gsap.to(`${receivingParty}`,{
-                            width: this.health  + '%',
+                        
+                        // var healthBar = document.querySelector(`${receivingParty}`)
+                        // healthBar.style.width=receiver.health + '%'
+                        gsap.to(playerHealthBar,{
+                            width: megaMewtwo.health  + 'px',
+                        })
+                        gsap.to(enemyHealthBar,{
+                            width: arceusDark.health  + 'px',
                         })
                         gsap.to(receiver.position,{
                            x: receiver.position.x + 10,
@@ -374,6 +378,10 @@ class animationSprite {
                 .to(this.position,{
                     x:this.position.x,
                     // y:this.position.y
+                    onComplete(){
+                        console.log(megaMewtwo.health,'mewtwo')
+                        console.log(arceusDark.health,'arceus')
+                    }
                     
                 })
             break
@@ -431,8 +439,11 @@ class animationSprite {
                     battleSceneToDraw.push(Attack)
                     setTimeout(()=>{ battleSceneToDraw.pop()},1000)
 
-                    gsap.to(`${receivingParty}`,{
-                        width: this.health  + '%',
+                    gsap.to(playerHealthBar,{
+                        width: megaMewtwo.health  + 'px',
+                    })
+                    gsap.to(enemyHealthBar,{
+                        width: arceusDark.health  + 'px',
                     })
                     gsap.to(receiver.position,{
                        x: receiver.position.x + 10,
@@ -511,8 +522,11 @@ class animationSprite {
                 battleSceneToDraw.push(Attack)
                 setTimeout(()=>{ battleSceneToDraw.pop()},1000)
 
-                gsap.to(`${receivingParty}`,{
-                    width: this.health  + '%',
+                gsap.to(playerHealthBar,{
+                    width: megaMewtwo.health  + 'px',
+                })
+                gsap.to(enemyHealthBar,{
+                    width: arceusDark.health  + 'px',
                 })
                 gsap.to(receiver.position,{
                    x: receiver.position.x + 10,
@@ -585,8 +599,11 @@ class animationSprite {
                     battleSceneToDraw.push(Attack)
                     setTimeout(()=>{ battleSceneToDraw.pop()},1000)
     
-                    gsap.to(`${receivingParty}`,{
-                        width: this.health  + '%',
+                    gsap.to(playerHealthBar,{
+                        width: megaMewtwo.health  + 'px',
+                    })
+                    gsap.to(enemyHealthBar,{
+                        width: arceusDark.health  + 'px',
                     })
                     gsap.to(receiver.position,{
                        x: receiver.position.x + 10,
@@ -1045,6 +1062,9 @@ const Buttons = document.querySelectorAll('button')
 // })
 const attackType = document.querySelector('#attackType')
 const enemyAttackQueue = []
+if(megaMewtwo.health<=0){
+  console.log('mewtwo fainted')
+}
 Buttons.forEach((button)=>{
     button.addEventListener('mouseover',()=>{
         if(button.name === 'Tackle'){
@@ -1070,18 +1090,24 @@ Buttons.forEach((button)=>{
             attacker: megaMewtwo,
             receiver: arceusDark
         })
+        
         // arceusDark.attack({
         //     attack: attacks.Tackle,
         //     attacker: arceusDark,
         //     receiver: megaMewtwo
         // })
-        enemyAttackQueue.push(()=>{
-            arceusDark.attack({
-                attack: attacks.Tackle,
-                attacker: arceusDark,
-                receiver: megaMewtwo
+        if(arceusDark.health <= 0){
+           console.log("arceus Fainted")
+        }
+        else{
+            enemyAttackQueue.push(()=>{
+                arceusDark.attack({
+                    attack: attacks.Tackle,
+                    attacker: arceusDark,
+                    receiver: megaMewtwo
+                })
             })
-        })
+        }
        }
        if(button.name === 'EnergyBall'){
         megaMewtwo.attack({
@@ -1089,13 +1115,19 @@ Buttons.forEach((button)=>{
             attacker: megaMewtwo,
             receiver: arceusDark
         })
-        enemyAttackQueue.push(()=>{
-            arceusDark.attack({
-                attack: attacks.Tackle,
-                attacker: arceusDark,
-                receiver: megaMewtwo
+       
+        if(arceusDark.health <= 0){
+            console.log("arceus Fainted")
+         }
+        else{
+            enemyAttackQueue.push(()=>{
+                arceusDark.attack({
+                    attack: attacks.Tackle,
+                    attacker: arceusDark,
+                    receiver: megaMewtwo
+                })
             })
-        })
+        }
        }
        if(button.name === 'Explosion'){
         megaMewtwo.attack({
@@ -1103,13 +1135,18 @@ Buttons.forEach((button)=>{
             attacker: megaMewtwo,
             receiver: arceusDark
         })
-        enemyAttackQueue.push(()=>{
-            arceusDark.attack({
-                attack: attacks.Tackle,
-                attacker: arceusDark,
-                receiver: megaMewtwo
+        if(arceusDark.health <= 0){
+            console.log("arceus Fainted")
+         }
+        else{
+            enemyAttackQueue.push(()=>{
+                arceusDark.attack({
+                    attack: attacks.Tackle,
+                    attacker: arceusDark,
+                    receiver: megaMewtwo
+                })
             })
-        })
+        }
       }
       if(button.name === 'WaterPulse'){
         megaMewtwo.attack({
@@ -1117,13 +1154,18 @@ Buttons.forEach((button)=>{
             attacker: megaMewtwo,
             receiver: arceusDark
         })
-        enemyAttackQueue.push(()=>{
-            arceusDark.attack({
-                attack: attacks.Tackle,
-                attacker: arceusDark,
-                receiver: megaMewtwo
+        if(arceusDark.health <= 0){
+            console.log("arceus Fainted")
+         }
+        else{
+            enemyAttackQueue.push(()=>{
+                arceusDark.attack({
+                    attack: attacks.Tackle,
+                    attacker: arceusDark,
+                    receiver: megaMewtwo
+                })
             })
-        })
+        }
       }
     })
 })
