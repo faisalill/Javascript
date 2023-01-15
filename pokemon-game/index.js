@@ -333,8 +333,16 @@ class animationSprite {
                         gsap.to('#overlay',{
                             opacity:1,
                             onComplete(){
+                                var healthBarContianer  = document.querySelectorAll('.healthBarContainer')
+                                var attackBarContianer  = document.querySelector('.attackBar')
+                                gsap.to(healthBarContianer,{
+                                    display: 'none'
+                                   })
+                                   gsap.to(attackBarContianer,{
+                                    display: 'none'
+                                   })
                                cancelAnimationFrame(battleSceneId)
-                               animate()
+                               
                                gsap.to('#overlay',{
                                 opacity:0
                                })
@@ -357,11 +365,10 @@ class animationSprite {
         dialogue.innerHTML = `${attackerName} used ${attack.name}`
         let movementDistance = -30;
         receiver.health -= attack.damage
-        // let receivingParty = '#playerHealth'
+        
         if(receiver === arceusDark){
            movementDistance = 30
-        //    console.log('mewtwo attacking')
-        //    receivingParty='#enemyHealth'
+      
         }
         
         switch(attack.name){
@@ -405,13 +412,11 @@ class animationSprite {
                     x:this.position.x,
                     // y:this.position.y
                     onComplete(){
-                        console.log(megaMewtwo.health,'mewtwo')
-                        console.log(arceusDark.health,'arceus')
+                        
                         if(arceusDark.health <= 0){
                             arceusDark.faint({whoFainted: 'Arceus'})
                          }
                     }
-                    
                 })
             break
             case 'Energy Ball':
@@ -929,8 +934,15 @@ let moving = true;
 const battle = {
     initiated: false
 }
+var healthBarContainer = document.querySelectorAll('.healthBarContainer')
+healthBarContainer.forEach(bar =>{
+    bar.style.display = 'none'
+})
+var attackBar = document.querySelector('.attackBar')
+attackBar.style.display= 'none'
+var firstScene
 function animate(){
-   const firstScene =  window.requestAnimationFrame(animate)
+    firstScene =  window.requestAnimationFrame(animate)
     background.draw()
     boundaries.forEach(boundary =>{
         boundary.draw()
@@ -960,6 +972,10 @@ function animate(){
                     duration:0.3,
                     onComplete(){
                         battleScene()
+                        healthBarContainer.forEach(bar =>{
+                            bar.style.display='block'
+                        })
+                        attackBar.style.display='flex'
                         gsap.to('#overlay',{
                             opacity: 0,
                             duration:0.3
@@ -1042,7 +1058,7 @@ function animate(){
 
 }
 
-// animate()
+animate()
 
 
 const battleBackgroundImage = new Image()
@@ -1092,7 +1108,7 @@ function battleScene(){
         element.draw()
     })
 }
-battleScene()
+// battleScene()
 
 const Buttons = document.querySelectorAll('button')
 // Buttons.addEventListener('click',()=>{

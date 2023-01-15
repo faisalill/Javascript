@@ -113,11 +113,33 @@
         z-index: 1;
         cursor: pointer;
       }
-      
+      #endingScreen{
+        display: none;
+         color: white;
+         position: absolute;
+         z-index: 10000;
+         left: 50%;
+         top: 50%;
+         transform: translate(-50%,50%);
+      }
+      #endingScreen p{
+        padding: 10px;
+        font-size: 40px;
+      }
+      #endingScreen a{
+        position: relative;
+        left:150;
+        font-size: 18px;
+      }
     </style>
   </head>
   <body>
+    
     <div class="parent-div">
+      <div id="endingScreen">
+        <p>Thank You</p>
+        <a href="https://github.com/faisalill/" target="_blank">GitHub</a>
+      </div>
       <div class="overlay" id="overlay"></div>
       <div class="healthBarContainer monster">
         <p>Arceus</p>
