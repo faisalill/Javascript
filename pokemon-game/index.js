@@ -364,148 +364,238 @@ class animationSprite {
                 })
             break
             case 'Energy Ball':
-                    if(attack.projectile !=='None'){
-                            var projectileImage = new Image()
-                            projectileImage.src=`./assets/attacks/${attack.projectileName}.png`
-                            console.log(projectileImage.src)
-                            var projectile = new animationSprite({image:projectileImage,
-                            rows:1,columns:attack.projectileFrames,position:{
-                                x:attacker.position.x,
-                                y:attacker.position.y
-                            },
-                            sizeOffset:-300,
-                            animationSpeed:10,
-                            columnToAnimate:0,
-                            })
-                            battleProjectionToDraw.push(projectile)
-                        }
-                        gsap.to(projectile,{
-                            sizeOffset: -220
-                        })
-                        gsap.to(projectile.position,{
-                            x:receiver.position.x-150,
-                            y:receiver.position.y-10,
-                            duration:1.1,
-                            onComplete:()=>{
-                              battleProjectionToDraw.pop()
-                              
-                       if(attack.effect!=='None'){
-                        var AttackImage = new Image()
-                        AttackImage.src = `./assets/attacks/${attack.effect}.png`//'./assets/attacks/EnergyBallBlast14F.png'
-                        var Attack = new animationSprite({image:AttackImage,rows:1,columns:attack.effectFrames,position:{
-                            x:receiver.position.x-120+attack.offset.x,
-                            y:receiver.position.y-30+attack.offset.y
+                const sequence2 = gsap.timeline()
+
+                sequence2.to(this.position,{
+                    x:this.position.x-movementDistance,
+                    // y:this.position.y-20
+
+                
+                    
+                    
+                }).to(this.position,{
+                    x:this.position.x + movementDistance,
+                    // y:this.position.y-40,
+                    duration: 0.1,
+                    onComplete:() => {
+                            if(attack.projectile !=='None'){
+                        var projectileImage = new Image()
+                        projectileImage.src=`./assets/attacks/${attack.projectileName}.png`
+                        console.log(projectileImage.src)
+                        var projectile = new animationSprite({image:projectileImage,
+                        rows:1,columns:attack.projectileFrames,position:{
+                            x:attacker.position.x,
+                            y:attacker.position.y+20
                         },
-                        sizeOffset: -200,
-                        animationSpeed:5,
-                        columnToAnimate:0})
-                        battleSceneToDraw.push(Attack)
-                        setTimeout(()=>{ battleSceneToDraw.pop()},1000)
+                        sizeOffset:-320,
+                        animationSpeed:10,
+                        columnToAnimate:0,
+                        })
+                        battleProjectionToDraw.push(projectile)
+                    }
+                    gsap.to(projectile,{
+                        sizeOffset: -220,
+                        duration:1
+                    })
+                    gsap.to(projectile.position,{
+                        x:receiver.position.x-150,
+                        y:receiver.position.y-10,
+                        duration:1.1,
+                        onComplete:()=>{
+                          battleProjectionToDraw.pop()
+                          
+                   if(attack.effect!=='None'){
+                    var AttackImage = new Image()
+                    AttackImage.src = `./assets/attacks/${attack.effect}.png`//'./assets/attacks/EnergyBallBlast14F.png'
+                    var Attack = new animationSprite({image:AttackImage,rows:1,columns:attack.effectFrames,position:{
+                        x:receiver.position.x-120+attack.offset.x,
+                        y:receiver.position.y-30+attack.offset.y
+                    },
+                    sizeOffset: -200,
+                    animationSpeed:5,
+                    columnToAnimate:0})
+                    battleSceneToDraw.push(Attack)
+                    setTimeout(()=>{ battleSceneToDraw.pop()},1000)
 
-                        gsap.to(`${receivingParty}`,{
-                            width: this.health  + '%',
-                        })
-                        gsap.to(receiver.position,{
-                           x: receiver.position.x + 10,
-                           yoyo :true,
-                           repeat: 5,
-                           duration: 0.075
-                        })
-                        gsap.to(receiver,{
-                            opacity:0,
-                            repeat:5,
-                            yoyo:true,
-                            duration:0.075,
-                        })
-                       } 
-                            }
-                        })
-            break
-            case 'Explosion':if(attack.projectile !=='None'){
-                var projectileImage = new Image()
-                projectileImage.src=`./assets/attacks/${attack.projectileName}.png`
-                console.log(projectileImage.src)
-                var projectile = new animationSprite({image:projectileImage,
-                rows:1,columns:attack.projectileFrames,position:{
-                    x:attacker.position.x +50 ,
-                    y:attacker.position.y -50
-                },
-                sizeOffset:-300,
-                animationSpeed:10,
-                columnToAnimate:0,
+                    gsap.to(`${receivingParty}`,{
+                        width: this.health  + '%',
+                    })
+                    gsap.to(receiver.position,{
+                       x: receiver.position.x + 10,
+                       yoyo :true,
+                       repeat: 5,
+                       duration: 0.075
+                    })
+                    gsap.to(receiver,{
+                        opacity:0,
+                        repeat:5,
+                        yoyo:true,
+                        duration:0.075,
+                    })
+                   } 
+                        }
+                    })
+                    }
                 })
-                battleProjectionToDraw.push(projectile)
-            }
-            gsap.to(projectile,{
-                sizeOffset: -150
-            })
-            gsap.to(projectile.position,{
-                x:receiver.position.x -150,
-                y:receiver.position.y -120,
-                duration:1,
-                onComplete:()=>{
-                  battleProjectionToDraw.pop()
-                  
-           if(attack.effect!=='None'){
-            var AttackImage = new Image()
-            AttackImage.src = `./assets/attacks/${attack.effect}.png`//'./assets/attacks/EnergyBallBlast14F.png'
-            var Attack = new animationSprite({image:AttackImage,rows:1,columns:attack.effectFrames,position:{
-                x:receiver.position.x-120+attack.offset.x,
-                y:receiver.position.y-30+attack.offset.y
-            },
-            sizeOffset: -200,
-            animationSpeed:5,
-            columnToAnimate:0})
-            battleSceneToDraw.push(Attack)
-            setTimeout(()=>{ battleSceneToDraw.pop()},1000)
+                .to(this.position,{
+                    x:this.position.x,
+                    // y:this.position.y
+                    
+                })
+                   
+            break
+            case 'Explosion':
+                const sequence3 = gsap.timeline()
 
-            gsap.to(`${receivingParty}`,{
-                width: this.health  + '%',
-            })
-            gsap.to(receiver.position,{
-               x: receiver.position.x + 10,
-               yoyo :true,
-               repeat: 5,
-               duration: 0.075
-            })
-            gsap.to(receiver,{
-                opacity:0,
-                repeat:5,
-                yoyo:true,
-                duration:0.075,
-            })
-           } 
+            sequence3.to(this.position,{
+                x:this.position.x-movementDistance,
+                // y:this.position.y-20
+
+            
+                
+                
+            }).to(this.position,{
+                x:this.position.x + movementDistance,
+                // y:this.position.y-40,
+                duration: 0.1,
+                onComplete:() => {
+                        if(attack.projectile !=='None'){
+                    var projectileImage = new Image()
+                    projectileImage.src=`./assets/attacks/${attack.projectileName}.png`
+                    console.log(projectileImage.src)
+                    var projectile = new animationSprite({image:projectileImage,
+                    rows:1,columns:attack.projectileFrames,position:{
+                        x:attacker.position.x+50,
+                        y:attacker.position.y-50
+                    },
+                    sizeOffset:-300,
+                    animationSpeed:10,
+                    columnToAnimate:0,
+                    })
+                    battleProjectionToDraw.push(projectile)
+                }
+                gsap.to(projectile,{
+                    sizeOffset: -170
+                })
+                gsap.to(projectile.position,{
+                    x:receiver.position.x-110,
+                    y:receiver.position.y-130,
+                    duration:1.1,
+                    onComplete:()=>{
+                      battleProjectionToDraw.pop()
+                      
+               if(attack.effect!=='None'){
+                var AttackImage = new Image()
+                AttackImage.src = `./assets/attacks/${attack.effect}.png`//'./assets/attacks/EnergyBallBlast14F.png'
+                var Attack = new animationSprite({image:AttackImage,rows:1,columns:attack.effectFrames,position:{
+                    x:receiver.position.x-120+attack.offset.x,
+                    y:receiver.position.y-30+attack.offset.y
+                },
+                sizeOffset: -200,
+                animationSpeed:5,
+                columnToAnimate:0})
+                battleSceneToDraw.push(Attack)
+                setTimeout(()=>{ battleSceneToDraw.pop()},1000)
+
+                gsap.to(`${receivingParty}`,{
+                    width: this.health  + '%',
+                })
+                gsap.to(receiver.position,{
+                   x: receiver.position.x + 10,
+                   yoyo :true,
+                   repeat: 5,
+                   duration: 0.075
+                })
+                gsap.to(receiver,{
+                    opacity:0,
+                    repeat:5,
+                    yoyo:true,
+                    duration:0.075,
+                })
+               } 
+                    }
+                })
                 }
             })
-                // if(attack.effect!=='None'){
-                //     var AttackImage = new Image()
-                //     AttackImage.src = `./assets/attacks/${attack.effect}.png`//'./assets/attacks/EnergyBallBlast14F.png'
-                //     var Attack = new animationSprite({image:AttackImage,rows:1,columns:attack.effectFrames,position:{
-                //         x:receiver.position.x-120+attack.offset.x,
-                //         y:receiver.position.y-30+attack.offset.y
-                //     },
-                //     sizeOffset: -200,
-                //     animationSpeed:5,
-                //     columnToAnimate:0})
-                //     battleSceneToDraw.push(Attack)
-                //     setTimeout(()=>{ battleSceneToDraw.pop()},1000)
-
-                //     gsap.to(`${receivingParty}`,{
-                //         width: this.health  + '%',
-                //     })
-                //     gsap.to(receiver.position,{
-                //        x: receiver.position.x + 10,
-                //        yoyo :true,
-                //        repeat: 5,
-                //        duration: 0.075
-                //     })
-                //     gsap.to(receiver,{
-                //         opacity:0,
-                //         repeat:5,
-                //         yoyo:true,
-                //         duration:0.075,
-                //     })
-                //    } 
+            .to(this.position,{
+                x:this.position.x,
+                // y:this.position.y
+                
+            })
+            break
+            case 'Water Pulse':
+                const sequence4 = gsap.timeline()
+                sequence4.to(this.position,{
+                    x:this.position.x-movementDistance,
+                    // y:this.position.y-20
+                }).to(this.position,{
+                    x:this.position.x + movementDistance,
+                    // y:this.position.y-40,
+                    duration: 0.1,
+                    onComplete:() => {
+                            if(attack.projectile !=='None'){
+                        var projectileImage = new Image()
+                        projectileImage.src=`./assets/attacks/${attack.projectileName}.png`
+                        console.log(projectileImage.src)
+                        var projectile = new animationSprite({image:projectileImage,
+                        rows:1,columns:attack.projectileFrames,position:{
+                            x:attacker.position.x+50,
+                            y:attacker.position.y-50
+                        },
+                        sizeOffset:-300,
+                        animationSpeed:10,
+                        columnToAnimate:0,
+                        })
+                        battleProjectionToDraw.push(projectile)
+                    }
+                    gsap.to(projectile,{
+                        sizeOffset: -170
+                    })
+                    gsap.to(projectile.position,{
+                        x:receiver.position.x-110,
+                        y:receiver.position.y-130,
+                        duration:1.1,
+                        onComplete:()=>{
+                          battleProjectionToDraw.pop()
+                          
+                   if(attack.effect!=='None'){
+                    var AttackImage = new Image()
+                    AttackImage.src = `./assets/attacks/${attack.effect}.png`//'./assets/attacks/EnergyBallBlast14F.png'
+                    var Attack = new animationSprite({image:AttackImage,rows:1,columns:attack.effectFrames,position:{
+                        x:receiver.position.x-120+attack.offset.x,
+                        y:receiver.position.y-30+attack.offset.y
+                    },
+                    sizeOffset: -200,
+                    animationSpeed:5,
+                    columnToAnimate:0})
+                    battleSceneToDraw.push(Attack)
+                    setTimeout(()=>{ battleSceneToDraw.pop()},1000)
+    
+                    gsap.to(`${receivingParty}`,{
+                        width: this.health  + '%',
+                    })
+                    gsap.to(receiver.position,{
+                       x: receiver.position.x + 10,
+                       yoyo :true,
+                       repeat: 5,
+                       duration: 0.075
+                    })
+                    gsap.to(receiver,{
+                        opacity:0,
+                        repeat:5,
+                        yoyo:true,
+                        duration:0.075,
+                    })
+                   } 
+                        }
+                    })
+                    }
+                })
+                .to(this.position,{
+                    x:this.position.x,
+                    // y:this.position.y
+                    
+                })
             break
         }
         
@@ -952,6 +1042,9 @@ Buttons.forEach((button)=>{
           if(button.name === 'Explosion'){
             attackType.innerHTML=attacks.Explosion.type
           }
+          if(button.name === 'WaterPulse'){
+            attackType.innerHTML=attacks.WaterPulse.type
+          }
     })
     button.addEventListener('mouseleave',()=>{
         attackType.innerHTML= 'Attack Type'
@@ -974,6 +1067,13 @@ Buttons.forEach((button)=>{
        if(button.name === 'Explosion'){
         megaMewtwo.attack({
             attack: attacks.Explosion,
+            attacker: megaMewtwo,
+            receiver: arceusDark
+        })
+      }
+      if(button.name === 'WaterPulse'){
+        megaMewtwo.attack({
+            attack: attacks.WaterPulse,
             attacker: megaMewtwo,
             receiver: arceusDark
         })

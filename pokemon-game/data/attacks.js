@@ -13,7 +13,7 @@ const attacks = {
     EnergyBall:{
         name: 'Energy Ball',
         damage:30,
-        type: 'Psychic',
+        type: 'Electric',
         effect: 'EnergyBallBlast14F',
         effectFrames: 14,
         offset:{
@@ -26,7 +26,7 @@ const attacks = {
     },
     Explosion:{
         name:'Explosion',
-        damage:40,
+        damage:30,
         type:'Fire',
         effect:'Explosion16F',
         effectFrames:16,
@@ -37,5 +37,19 @@ const attacks = {
         projectile: 'Yes',
         projectileName: 'ExplosionProjectile12F',
         projectileFrames:12
+    },
+    WaterPulse:{
+        name:'Water Pulse',
+        damage:30,
+        type:'Water',
+        effect:'WaterEffect13F',
+        effectFrames: 13,
+        offset:{
+            x:0,
+            y:0
+        },
+        projectile: 'Yes',
+        projectileName: 'WaterAttack15F',
+        projectileFrames: 15
     }
 }
