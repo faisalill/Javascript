@@ -540,7 +540,7 @@ class animationSprite {
                         var projectile = new animationSprite({image:projectileImage,
                         rows:1,columns:attack.projectileFrames,position:{
                             x:attacker.position.x+50,
-                            y:attacker.position.y-50
+                            y:attacker.position.y-20
                         },
                         sizeOffset:-300,
                         animationSpeed:10,
@@ -553,8 +553,8 @@ class animationSprite {
                     })
                     gsap.to(projectile.position,{
                         x:receiver.position.x-110,
-                        y:receiver.position.y-130,
-                        duration:1.1,
+                        y:receiver.position.y-80,
+                        duration:1.5,
                         onComplete:()=>{
                           battleProjectionToDraw.pop()
                           

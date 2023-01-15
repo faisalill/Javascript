@@ -45,8 +45,8 @@ const attacks = {
         effect:'WaterEffect13F',
         effectFrames: 13,
         offset:{
-            x:0,
-            y:0
+            x:30,
+            y:80
         },
         projectile: 'Yes',
         projectileName: 'WaterAttack15F',
