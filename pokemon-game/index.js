@@ -319,12 +319,26 @@ class animationSprite {
             }
         }
        attack({attack,receiver,attacker}){
+        const dialogue = document.querySelector('#dialogueBox')
+        dialogue.style.display = 'block'
+        let attackerName = '';
+        if(receiver === arceusDark){
+            attackerName = 'Mega Mewtwo Y'
+        }
+        else attackerName = 'Arceus'
+        dialogue.innerHTML = `${attackerName} used ${attack.name}`
         let movementDistance = -30;
         this.health -= attack.damage
         let receivingParty = '#playerHealth'
         if(receiver === arceusDark){
            movementDistance = 30
+           console.log('mewtwo attacking')
            receivingParty='#enemyHealth'
+        }
+        if(receiver === megaMewtwo){
+            movementDistance = -30
+            console.log("arceus is attacking")
+            receivingParty = '#playerHealth'
         }
         switch(attack.name){
             case 'Tackle':
@@ -1030,7 +1044,7 @@ const Buttons = document.querySelectorAll('button')
 // console.log(Buttons)
 // })
 const attackType = document.querySelector('#attackType')
-
+const enemyAttackQueue = []
 Buttons.forEach((button)=>{
     button.addEventListener('mouseover',()=>{
         if(button.name === 'Tackle'){
@@ -1056,12 +1070,31 @@ Buttons.forEach((button)=>{
             attacker: megaMewtwo,
             receiver: arceusDark
         })
+        // arceusDark.attack({
+        //     attack: attacks.Tackle,
+        //     attacker: arceusDark,
+        //     receiver: megaMewtwo
+        // })
+        enemyAttackQueue.push(()=>{
+            arceusDark.attack({
+                attack: attacks.Tackle,
+                attacker: arceusDark,
+                receiver: megaMewtwo
+            })
+        })
        }
        if(button.name === 'EnergyBall'){
         megaMewtwo.attack({
             attack: attacks.EnergyBall,
             attacker: megaMewtwo,
             receiver: arceusDark
+        })
+        enemyAttackQueue.push(()=>{
+            arceusDark.attack({
+                attack: attacks.Tackle,
+                attacker: arceusDark,
+                receiver: megaMewtwo
+            })
         })
        }
        if(button.name === 'Explosion'){
@@ -1070,6 +1103,13 @@ Buttons.forEach((button)=>{
             attacker: megaMewtwo,
             receiver: arceusDark
         })
+        enemyAttackQueue.push(()=>{
+            arceusDark.attack({
+                attack: attacks.Tackle,
+                attacker: arceusDark,
+                receiver: megaMewtwo
+            })
+        })
       }
       if(button.name === 'WaterPulse'){
         megaMewtwo.attack({
@@ -1077,10 +1117,25 @@ Buttons.forEach((button)=>{
             attacker: megaMewtwo,
             receiver: arceusDark
         })
+        enemyAttackQueue.push(()=>{
+            arceusDark.attack({
+                attack: attacks.Tackle,
+                attacker: arceusDark,
+                receiver: megaMewtwo
+            })
+        })
       }
     })
 })
-const attackButton = document.querySelector
+
+const dialogueBox = document.querySelector('#dialogueBox')
+dialogueBox.addEventListener('click',(e)=>{
+    if(enemyAttackQueue.length > 0){
+        enemyAttackQueue[0]()
+        enemyAttackQueue.shift()
+    }
+    else e.currentTarget.style.display = 'none'
+})
 
 let lastKey = ''
 window.addEventListener('keydown', (e)=>{
