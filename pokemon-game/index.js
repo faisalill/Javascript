@@ -344,7 +344,8 @@ class animationSprite {
                                    })
                                cancelAnimationFrame(battleSceneId)
                                gsap.to(endingScreen,{
-                                display: 'block'
+                                display: 'block',
+                                duration:2
                                })
                             //    gsap.to('#overlay',{
                             //     opacity:0
