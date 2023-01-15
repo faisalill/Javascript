@@ -318,6 +318,32 @@ class animationSprite {
                 }
             }
         }
+        faint({whoFainted}){
+            const dialogue = document.querySelector('#dialogueBox')
+            dialogue.innerHTML = 'Arceus Fainted'
+            gsap.to(arceusDark.position,{
+               y: arceusDark.position.y + 20,
+               duration:1
+            })
+            gsap.to(arceusDark,{
+                opacity:0,
+                duration:1,
+                onComplete(){
+                    dialogue.addEventListener('click',()=>{
+                        gsap.to('#overlay',{
+                            opacity:1,
+                            onComplete(){
+                               cancelAnimationFrame(battleSceneId)
+                               animate()
+                               gsap.to('#overlay',{
+                                opacity:0
+                               })
+                            }
+                        })
+                    })
+                }
+            })
+        }
        attack({attack,receiver,attacker}){
         const dialogue = document.querySelector('#dialogueBox')
         const playerHealthBar = document.querySelector('#playerHealth')
@@ -381,6 +407,9 @@ class animationSprite {
                     onComplete(){
                         console.log(megaMewtwo.health,'mewtwo')
                         console.log(arceusDark.health,'arceus')
+                        if(arceusDark.health <= 0){
+                            arceusDark.faint({whoFainted: 'Arceus'})
+                         }
                     }
                     
                 })
@@ -465,7 +494,11 @@ class animationSprite {
                 .to(this.position,{
                     x:this.position.x,
                     // y:this.position.y
-                    
+                    onComplete(){
+                        if(arceusDark.health <= 0){
+                            arceusDark.faint({whoFainted: 'Arceus'})
+                         }
+                    }
                 })
                    
             break
@@ -548,7 +581,11 @@ class animationSprite {
             .to(this.position,{
                 x:this.position.x,
                 // y:this.position.y
-                
+                onComplete(){
+                    if(arceusDark.health <= 0){
+                        arceusDark.faint({whoFainted: 'Arceus'})
+                     }
+                }
             })
             break
             case 'Water Pulse':
@@ -625,7 +662,11 @@ class animationSprite {
                 .to(this.position,{
                     x:this.position.x,
                     // y:this.position.y
-                    
+                    onComplete(){
+                        if(arceusDark.health <= 0){
+                            arceusDark.faint({whoFainted: 'Arceus'})
+                         }
+                    }
                 })
             break
         }
@@ -1038,9 +1079,9 @@ sizeOffset:60,
 animationSpeed:1.5,
 columnToAnimate:0})
 
-
+var battleSceneId;
 function battleScene(){
-    window.requestAnimationFrame(battleScene)
+    battleSceneId = window.requestAnimationFrame(battleScene)
     battleBackground.draw()
     arceusDark.draw()
     megaMewtwo.draw()
@@ -1062,9 +1103,7 @@ const Buttons = document.querySelectorAll('button')
 // })
 const attackType = document.querySelector('#attackType')
 const enemyAttackQueue = []
-if(megaMewtwo.health<=0){
-  console.log('mewtwo fainted')
-}
+
 Buttons.forEach((button)=>{
     button.addEventListener('mouseover',()=>{
         if(button.name === 'Tackle'){
@@ -1096,10 +1135,11 @@ Buttons.forEach((button)=>{
         //     attacker: arceusDark,
         //     receiver: megaMewtwo
         // })
+        
         if(arceusDark.health <= 0){
-           console.log("arceus Fainted")
-        }
-        else{
+            return 
+         }
+         else{
             enemyAttackQueue.push(()=>{
                 arceusDark.attack({
                     attack: attacks.Tackle,
@@ -1117,7 +1157,7 @@ Buttons.forEach((button)=>{
         })
        
         if(arceusDark.health <= 0){
-            console.log("arceus Fainted")
+            return 
          }
         else{
             enemyAttackQueue.push(()=>{
@@ -1136,7 +1176,7 @@ Buttons.forEach((button)=>{
             receiver: arceusDark
         })
         if(arceusDark.health <= 0){
-            console.log("arceus Fainted")
+            return 
          }
         else{
             enemyAttackQueue.push(()=>{
@@ -1155,8 +1195,8 @@ Buttons.forEach((button)=>{
             receiver: arceusDark
         })
         if(arceusDark.health <= 0){
-            console.log("arceus Fainted")
-         }
+         return 
+        }
         else{
             enemyAttackQueue.push(()=>{
                 arceusDark.attack({
