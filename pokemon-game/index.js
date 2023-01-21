@@ -963,6 +963,8 @@ function animate(){
         if(background.position.x>=-539 && background.position.x <=367){
             // console.log("battle started")
             window.cancelAnimationFrame(firstScene)
+            audio.Map.stop()
+            audio.Battle.play()
             battle.initiated = true
             
             gsap.to("#overlay", {
@@ -1276,3 +1278,9 @@ window.addEventListener('keyup', (e)=>{
         break;
     }
 })
+setTimeout(()=>{
+    audio.Map.play()
+    document.querySelector('.overlay').style.scale = 1
+    document.querySelector('.attackBar').style.scale = 1
+    document.querySelectorAll('.healthBarContainer').forEach(container => container.style.scale =1)
+},2000)
