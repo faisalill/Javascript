@@ -382,7 +382,12 @@ class animationSprite {
             attackerName = 'Mega Mewtwo Y'
         }
         else attackerName = 'Arceus'
-        dialogue.innerHTML = `${attackerName} used ${attack.name}`
+        if(attacker === megaMewtwo){
+            dialogue.textContent = `${attackerName} used ${attack.name} \xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0 Click Here`
+        }
+        if(attacker === arceusDark){
+            dialogue.textContent = `${attackerName} used ${attack.name} \xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0 Click Here`
+        }
         let movementDistance = -30;
         receiver.health -= attack.damage
         
