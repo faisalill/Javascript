@@ -419,6 +419,8 @@ class animationSprite {
                         
                         if(arceusDark.health <= 0){
                             arceusDark.faint({whoFainted: 'Arceus'})
+                            audio.Battle.stop()
+                            audio.Victory.play()
                          }
                     }
                 })
@@ -506,6 +508,8 @@ class animationSprite {
                     onComplete(){
                         if(arceusDark.health <= 0){
                             arceusDark.faint({whoFainted: 'Arceus'})
+                            audio.Battle.stop()
+                            audio.Victory.play()
                          }
                     }
                 })
@@ -593,6 +597,8 @@ class animationSprite {
                 onComplete(){
                     if(arceusDark.health <= 0){
                         arceusDark.faint({whoFainted: 'Arceus'})
+                        audio.Battle.stop()
+                            audio.Victory.play()
                      }
                 }
             })
@@ -674,6 +680,8 @@ class animationSprite {
                     onComplete(){
                         if(arceusDark.health <= 0){
                             arceusDark.faint({whoFainted: 'Arceus'})
+                            audio.Battle.stop()
+                            audio.Victory.play()
                          }
                     }
                 })
@@ -1278,9 +1286,9 @@ window.addEventListener('keyup', (e)=>{
         break;
     }
 })
+setTimeout(()=>{audio.Map.play()},1500)
 setTimeout(()=>{
-    audio.Map.play()
     document.querySelector('.overlay').style.scale = 1
     document.querySelector('.attackBar').style.scale = 1
     document.querySelectorAll('.healthBarContainer').forEach(container => container.style.scale =1)
-},2000)
+},10000)
