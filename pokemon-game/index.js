@@ -275,6 +275,22 @@ for(let i = 0; i<=5; i++){
 })
     islandAnimationArray.push(islandWaterAnimation1)
 }
+const energyBallImageProjectile = new Image()
+energyBallImageProjectile.src = './assets/attacks/EnergyBall12F.png'
+const energyBallBlast = new Image()
+energyBallBlast.src = './assets/attacks/EnergyBallBlast14F.png'
+
+const explosinProjectile = new Image()
+explosinProjectile.src = './assets/attacks/ExplosionProjectile12F.png'
+const explosionBlast = new Image()
+explosionBlast.src = './assets/attacks/Explosion16F.png'
+
+const waterPulseProjectile = new Image()
+waterPulseProjectile.src = './assets/attacks/WaterAttack15F.png'
+const waterPulseBlast = new Image()
+waterPulseBlast.src = './assets/attacks/WaterEffect13F.png'
+
+
 
 const battleSceneToDraw = []
 const battleProjectionToDraw=[]
@@ -440,11 +456,11 @@ class animationSprite {
                     // y:this.position.y-40,
                     duration: 0.1,
                     onComplete:() => {
-                            if(attack.projectile !=='None'){
-                        var projectileImage = new Image()
-                        projectileImage.src=`./assets/attacks/${attack.projectileName}.png`
-                        console.log(projectileImage.src)
-                        var projectile = new animationSprite({image:projectileImage,
+                        if(attack.projectile !=='None'){
+                        // var projectileImage = new Image()
+                        // projectileImage.src=`./assets/attacks/${attack.projectileName}.png`
+                        // console.log(projectileImage.src)
+                        var projectile = new animationSprite({image:energyBallImageProjectile,
                         rows:1,columns:attack.projectileFrames,position:{
                             x:attacker.position.x,
                             y:attacker.position.y+20
@@ -467,9 +483,9 @@ class animationSprite {
                           battleProjectionToDraw.pop()
                           
                    if(attack.effect!=='None'){
-                    var AttackImage = new Image()
-                    AttackImage.src = `./assets/attacks/${attack.effect}.png`//'./assets/attacks/EnergyBallBlast14F.png'
-                    var Attack = new animationSprite({image:AttackImage,rows:1,columns:attack.effectFrames,position:{
+                    // var AttackImage = new Image()
+                    // AttackImage.src = `./assets/attacks/${attack.effect}.png`//'./assets/attacks/EnergyBallBlast14F.png'
+                    var Attack = new animationSprite({image:energyBallBlast,rows:1,columns:attack.effectFrames,position:{
                         x:receiver.position.x-120+attack.offset.x,
                         y:receiver.position.y-30+attack.offset.y
                     },
@@ -531,10 +547,10 @@ class animationSprite {
                 duration: 0.1,
                 onComplete:() => {
                         if(attack.projectile !=='None'){
-                    var projectileImage = new Image()
-                    projectileImage.src=`./assets/attacks/${attack.projectileName}.png`
-                    console.log(projectileImage.src)
-                    var projectile = new animationSprite({image:projectileImage,
+                    // var projectileImage = new Image()
+                    // projectileImage.src=`./assets/attacks/${attack.projectileName}.png`
+                    // console.log(projectileImage.src)
+                    var projectile = new animationSprite({image:explosinProjectile,
                     rows:1,columns:attack.projectileFrames,position:{
                         x:attacker.position.x+50,
                         y:attacker.position.y-50
@@ -556,9 +572,9 @@ class animationSprite {
                       battleProjectionToDraw.pop()
                       
                if(attack.effect!=='None'){
-                var AttackImage = new Image()
-                AttackImage.src = `./assets/attacks/${attack.effect}.png`//'./assets/attacks/EnergyBallBlast14F.png'
-                var Attack = new animationSprite({image:AttackImage,rows:1,columns:attack.effectFrames,position:{
+                // var AttackImage = new Image()
+                // AttackImage.src = `./assets/attacks/${attack.effect}.png`//'./assets/attacks/EnergyBallBlast14F.png'
+                var Attack = new animationSprite({image:explosionBlast,rows:1,columns:attack.effectFrames,position:{
                     x:receiver.position.x-120+attack.offset.x,
                     y:receiver.position.y-30+attack.offset.y
                 },
@@ -614,10 +630,10 @@ class animationSprite {
                     duration: 0.1,
                     onComplete:() => {
                             if(attack.projectile !=='None'){
-                        var projectileImage = new Image()
-                        projectileImage.src=`./assets/attacks/${attack.projectileName}.png`
-                        console.log(projectileImage.src)
-                        var projectile = new animationSprite({image:projectileImage,
+                        // var projectileImage = new Image()
+                        // projectileImage.src=`./assets/attacks/${attack.projectileName}.png`
+                        // console.log(projectileImage.src)
+                        var projectile = new animationSprite({image:waterPulseProjectile,
                         rows:1,columns:attack.projectileFrames,position:{
                             x:attacker.position.x+50,
                             y:attacker.position.y-20
@@ -639,9 +655,9 @@ class animationSprite {
                           battleProjectionToDraw.pop()
                           
                    if(attack.effect!=='None'){
-                    var AttackImage = new Image()
-                    AttackImage.src = `./assets/attacks/${attack.effect}.png`//'./assets/attacks/EnergyBallBlast14F.png'
-                    var Attack = new animationSprite({image:AttackImage,rows:1,columns:attack.effectFrames,position:{
+                    // var AttackImage = new Image()
+                    // AttackImage.src = `./assets/attacks/${attack.effect}.png`//'./assets/attacks/EnergyBallBlast14F.png'
+                    var Attack = new animationSprite({image:waterPulseBlast,rows:1,columns:attack.effectFrames,position:{
                         x:receiver.position.x-120+attack.offset.x,
                         y:receiver.position.y-30+attack.offset.y
                     },
@@ -1291,4 +1307,4 @@ setTimeout(()=>{
     document.querySelector('.overlay').style.scale = 1
     document.querySelector('.attackBar').style.scale = 1
     document.querySelectorAll('.healthBarContainer').forEach(container => container.style.scale =1)
-},10000)
+},4000)
