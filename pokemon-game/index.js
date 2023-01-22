@@ -383,7 +383,7 @@ class animationSprite {
         }
         else attackerName = 'Arceus'
         if(attacker === megaMewtwo){
-            dialogue.textContent = `${attackerName} used ${attack.name} \xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0 Click Here`
+            dialogue.textContent = `${attackerName} used ${attack.name} \xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0 Click Here`
         }
         if(attacker === arceusDark){
             dialogue.textContent = `${attackerName} used ${attack.name} \xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0 Click Here`
