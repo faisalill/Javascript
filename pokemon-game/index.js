@@ -98,7 +98,7 @@ const player = new Sprite({
     frames: {
         max:4
     },
-    sizeOffset:1,
+    sizeOffset:5,
     sprites: {
         up: playerUpImage,
         down: playerDownImage,
