@@ -78,16 +78,16 @@ const image = new Image()
 image.src = './assets/pokemon-battle-map.png'
 
 const playerDownImage = new Image()
-playerDownImage.src = './assets/playerDown.png'
+playerDownImage.src = './assets/playerDownWhite.png'
 
 const playerUpImage = new Image()
-playerUpImage.src = './assets/playerUp.png'
+playerUpImage.src = './assets/playerUpWhite.png'
 
 const playerLeftImage = new Image()
-playerLeftImage.src = './assets/playerLeft.png'
+playerLeftImage.src = './assets/playerLeftWhite.png'
 
 const playerRightImage = new Image()
-playerRightImage.src = './assets/playerRight.png'
+playerRightImage.src = './assets/playerRightWhite.png'
 
 const player = new Sprite({
     position: {
@@ -98,7 +98,7 @@ const player = new Sprite({
     frames: {
         max:4
     },
-    sizeOffset:12,
+    sizeOffset:1,
     sprites: {
         up: playerUpImage,
         down: playerDownImage,
