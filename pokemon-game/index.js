@@ -1069,23 +1069,35 @@ window.addEventListener('keydown', (e)=>{
     switch(e.key){
         case 'w': 
         keys.w.pressed  = true
+        lastKey='w'
         if(audioCount===0){
             audio.Map.play()
             audioCount++
         }
-        lastKey='w'
         break;
         case 's': 
         keys.s.pressed  = true
         lastKey='s'
+        if(audioCount===0){
+            audio.Map.play()
+            audioCount++
+        }
         break;
         case 'a': 
         keys.a.pressed  = true
         lastKey='a'
+        if(audioCount===0){
+            audio.Map.play()
+            audioCount++
+        }
         break;
         case 'd': 
         keys.d.pressed  = true
         lastKey='d'
+        if(audioCount===0){
+            audio.Map.play()
+            audioCount++
+        }
         break;
     }
 })
@@ -1109,9 +1121,9 @@ window.addEventListener('keyup', (e)=>{
 
   alert(`Use WSAD to move
   W to move up
-  S to move left
-  A to move right
-  D to move down
+  A to move left
+  D to move right
+  S to move down
   `)
 
 
