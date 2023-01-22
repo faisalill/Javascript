@@ -74,20 +74,7 @@ class Sprite {
     }
 }
 
-const image = new Image()
-image.src = './assets/pokemon-battle-map.png'
 
-const playerDownImage = new Image()
-playerDownImage.src = './assets/playerDownWhite.png'
-
-const playerUpImage = new Image()
-playerUpImage.src = './assets/playerUpWhite.png'
-
-const playerLeftImage = new Image()
-playerLeftImage.src = './assets/playerLeftWhite.png'
-
-const playerRightImage = new Image()
-playerRightImage.src = './assets/playerRightWhite.png'
 
 const player = new Sprite({
     position: {
@@ -106,189 +93,6 @@ const player = new Sprite({
         right: playerRightImage
     }
 })
-
-const waterAnimations = new Image()
-waterAnimations.src = './assets/water_animations.png'
-
-class islandAnimation{
-    constructor({image,position,rowToAnimate=0,cropPosition = {x: 9,y:0,dx:29,dy:20},sizeOffset={x:0,y:0}}){
-        this.image = image
-        this.position = position
-        this.framesElapsed = 0
-        this.frames = 0
-        this.rowToAnimate = rowToAnimate
-        this.cropPosition  = cropPosition
-        this.sizeOffset = sizeOffset
-    }
-    draw(){
-        c.drawImage(
-            this.image,
-            // 0,// this.image.width/8/18*1,
-            // this.image.height*0,
-            // this.image.width/8/18*1,
-            // this.image.height/2/9*2,
-            // this.position.x,
-            // this.position.y,
-            // this.image.width/8/18*1,
-            // this.image.height/2/9*2
-            this.cropPosition.x+this.image.width/8*this.frames,
-            this.cropPosition.y+this.rowToAnimate,
-            this.cropPosition.dx,
-            this.cropPosition.dy,
-            this.position.x,
-            this.position.y,
-            58+this.sizeOffset.x,
-            38+this.sizeOffset.y
-        )
-        if(1){
-            this.framesElapsed++
-         }
-         if(this.framesElapsed %10 === 0){
-             if(this.frames < 7){
-                 this.frames++
-             }
-             else{
-                 this.frames = 0
-             }
-         }
-    }
-}
-
-const islandAnimationArray = []
-
-const islandWaterImage = new Image()
-islandWaterImage.src = './assets/Water Tileset.png'
-for(let i = 0; i<=16; i++){
-    const islandWaterAnimation1 = new islandAnimation({image: islandWaterImage, position: {
-        x: 10+(58*i),
-        y: 461
-    }})
-    islandAnimationArray.push(islandWaterAnimation1)
-}
-const dryLandYCoordinate = 80
-for(let i = 0; i<=3; i++){
-    const islandWaterAnimation1 = new islandAnimation({image: islandWaterImage, position: {
-        x: 180+(58*i),
-        y: -115
-    },
-    rowToAnimate:dryLandYCoordinate
-})
-    islandAnimationArray.push(islandWaterAnimation1)
-}
-for(let i = 0; i<=3; i++){
-    const islandWaterAnimation1 = new islandAnimation({image: islandWaterImage, position: {
-        x: 590+(58*i),
-        y: -115
-    },
-    rowToAnimate:dryLandYCoordinate
-})
-    islandAnimationArray.push(islandWaterAnimation1)
-}
-for(let i = 0; i<=2; i++){
-    const islandWaterAnimation1 = new islandAnimation({image: islandWaterImage, position: {
-        x: 870+(58*i),
-        y: -310
-    },
-    rowToAnimate:dryLandYCoordinate
-})
-    islandAnimationArray.push(islandWaterAnimation1)
-}
-for(let i = 0; i<=1; i++){
-    const islandWaterAnimation1 = new islandAnimation({image: islandWaterImage, position: {
-        x: 0+(58*i),
-        y: -310
-    },
-    rowToAnimate:dryLandYCoordinate
-})
-    islandAnimationArray.push(islandWaterAnimation1)
-}
-for(let i = 0; i<=8; i++){
-    const islandWaterAnimation1 = new islandAnimation({image: islandWaterImage, position: {
-        x: -10,//0+(58*i),
-        y: 440 -(28*i)
-    },
-    cropPosition: {
-        x:35,
-        y:15,
-        dx:13,
-        dy:10
-    },
-    sizeOffset: {
-        x:-30,
-        y:-10
-    }
-})
-    islandAnimationArray.push(islandWaterAnimation1)
-}
-for(let i = 0; i<=8; i++){
-    const islandWaterAnimation1 = new islandAnimation({image: islandWaterImage, position: {
-        x: 1008,//0+(58*i),
-        y: 427 -(28*i)
-    },
-    cropPosition: {
-        x:45,
-        y:15,
-        dx:13,
-        dy:10
-    },
-    sizeOffset: {
-        x:-35,
-        y:-10
-    }
-})
-    islandAnimationArray.push(islandWaterAnimation1)
-}
-for(let i = 0; i<=5; i++){
-    const islandWaterAnimation1 = new islandAnimation({image: islandWaterImage, position: {
-        x: 120,//0+(58*i),
-        y: -140 -(28*i)
-    },
-    cropPosition: {
-        x:35,
-        y:94,
-        dx:13,
-        dy:10
-    },
-    sizeOffset: {
-        x:-30,
-        y:-10
-    }
-})
-    islandAnimationArray.push(islandWaterAnimation1)
-}
-
-for(let i = 0; i<=5; i++){
-    const islandWaterAnimation1 = new islandAnimation({image: islandWaterImage, position: {
-        x: 845,//0+(58*i),
-        y: -140 -(28*i)
-    },
-    cropPosition: {
-        x:46,
-        y:94,
-        dx:12,
-        dy:10
-    },
-    sizeOffset: {
-        x:-30,
-        y:-10
-    }
-})
-    islandAnimationArray.push(islandWaterAnimation1)
-}
-const energyBallImageProjectile = new Image()
-energyBallImageProjectile.src = './assets/attacks/EnergyBall12F.png'
-const energyBallBlast = new Image()
-energyBallBlast.src = './assets/attacks/EnergyBallBlast14F.png'
-
-const explosinProjectile = new Image()
-explosinProjectile.src = './assets/attacks/ExplosionProjectile12F.png'
-const explosionBlast = new Image()
-explosionBlast.src = './assets/attacks/Explosion16F.png'
-
-const waterPulseProjectile = new Image()
-waterPulseProjectile.src = './assets/attacks/WaterAttack15F.png'
-const waterPulseBlast = new Image()
-waterPulseBlast.src = './assets/attacks/WaterEffect13F.png'
 
 
 
@@ -724,8 +528,7 @@ sizeOffset:13,
 columnToAnimate: 0
 })
 
-const arceusImage = new Image()
-arceusImage.src = './assets/arceusSpritesheet.png'
+
 const arceus = new animationSprite({image: arceusImage, rows:4, columns:4, position:{
     x: 430,
     y:-700
@@ -735,8 +538,6 @@ columnToAnimate:0
 })
 
 
-const chaliceImage  = new Image()
-chaliceImage.src = './assets/chalice.png'
 
 const chalice1 = new animationSprite({image: chaliceImage, rows:1, columns:8,position:{
     x:315,
@@ -754,8 +555,7 @@ columnToAnimate:0})
 
 
 
-const bushImage = new Image()
-bushImage.src = './assets/bushAnimation.png'
+
 const bush = new animationSprite({image: bushImage,rows:1,columns:6,position:{
     x:60,
     y:235
@@ -765,8 +565,7 @@ columnToAnimate: 0})
 
 
 
-const smithImage = new Image()
-smithImage.src = './assets/smith.png'
+
 const smith = new animationSprite({image:smithImage,rows:1, columns:8,position:{
     x:835,
     y:100
@@ -774,16 +573,14 @@ const smith = new animationSprite({image:smithImage,rows:1, columns:8,position:{
 sizeOffset:32
 })
 
-const altarImage = new Image()
-altarImage.src = './assets/altar.png'
+
 const altar = new animationSprite({image:altarImage, rows:1, columns:39, position: {
     x:285,
     y:-830,
 },
 sizeOffset:200})
 
-const fountainImage = new Image()
-fountainImage.src = './assets/shrine.png'
+
 const fountain = new animationSprite({image: fountainImage, rows:1, columns:8, position:{
     x:0,
     y:-710
@@ -1096,8 +893,7 @@ function animate(){
 animate()
 
 
-const battleBackgroundImage = new Image()
-battleBackgroundImage.src = './assets/battleBackground.jpg'
+
 const battleBackground = new animationSprite({image: battleBackgroundImage,
 rows:1, columns:1, position:{
     x:0,
@@ -1109,8 +905,7 @@ columnToAnimate:0
 
 
 
-const arceusDarkImage = new Image()
-arceusDarkImage.src = './assets/DarkArceusSpriteSheet.png'
+
 const arceusDark = new animationSprite({image: arceusDarkImage,columns:89,rows:1,position:{
     x:800,
     y:290
@@ -1119,8 +914,7 @@ sizeOffset:30,
 columnToAnimate:0,
 animationSpeed:1 })
 
-const megaMewtwoImage = new Image()
-megaMewtwoImage.src = './assets/megaMewtwoY.png'
+
 const megaMewtwo = new animationSprite({image:megaMewtwoImage,
 rows:1,columns:89,position:{
     x:110,
@@ -1307,9 +1101,13 @@ window.addEventListener('keyup', (e)=>{
         break;
     }
 })
+
+
 function playAudio(){
     audio.Map.play()
 }
+
+
 setTimeout(playAudio(),100)
 setTimeout(()=>{
     document.querySelector('.overlay').style.scale = 1
