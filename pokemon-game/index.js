@@ -140,7 +140,7 @@ class animationSprite {
         }
         faint({whoFainted}){
             const dialogue = document.querySelector('#dialogueBox')
-            dialogue.innerHTML = 'Arceus Fainted'
+            dialogue.innerHTML = 'Arceus Fainted \xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0\xa0 Click Here '
             gsap.to(arceusDark.position,{
                y: arceusDark.position.y + 20,
                duration:1
