@@ -1069,6 +1069,10 @@ window.addEventListener('keydown', (e)=>{
     switch(e.key){
         case 'w': 
         keys.w.pressed  = true
+        if(audioCount===0){
+            audio.Map.play()
+            audioCount++
+        }
         lastKey='w'
         break;
         case 's': 
@@ -1103,8 +1107,13 @@ window.addEventListener('keyup', (e)=>{
 })
 
 
-  alert(`Use WSAD to move`)
-    audio.Map.play()
+  alert(`Use WSAD to move
+  W to move up
+  S to move left
+  A to move right
+  D to move down
+  `)
+
 
 setTimeout(()=>{
     document.querySelector('.overlay').style.scale = 1
