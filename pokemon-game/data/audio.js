@@ -12,3 +12,9 @@ const audio = {
         html5: true
     })
 }
+
+function playAudio(){
+    audio.Map.play()
+}
+
+setTimeout(playAudio(),100)
