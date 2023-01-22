@@ -1054,7 +1054,7 @@ Buttons.forEach((button)=>{
       }
     })
 })
-
+let audioCount = 0
 const dialogueBox = document.querySelector('#dialogueBox')
 dialogueBox.addEventListener('click',(e)=>{
     if(enemyAttackQueue.length > 0){
@@ -1103,9 +1103,9 @@ window.addEventListener('keyup', (e)=>{
 })
 
 
-setTimeout(()=>{
+  alert(`Use WSAD to move`)
     audio.Map.play()
-},600)
+
 setTimeout(()=>{
     document.querySelector('.overlay').style.scale = 1
     document.querySelector('.attackBar').style.scale = 1
