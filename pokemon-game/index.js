@@ -1103,7 +1103,7 @@ window.addEventListener('keyup', (e)=>{
 })
 
 
-
+audio.Map.play()
 setTimeout(()=>{
     document.querySelector('.overlay').style.scale = 1
     document.querySelector('.attackBar').style.scale = 1

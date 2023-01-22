@@ -13,8 +13,4 @@ const audio = {
     })
 }
 
-function playAudio(){
-    audio.Map.play()
-}
-
-setTimeout(playAudio(),100)
+   
