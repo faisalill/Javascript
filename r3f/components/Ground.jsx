@@ -3,8 +3,8 @@ const Ground = () => {
   return (
     <>
      <mesh rotation-x={Math.PI*-0.5} receiveShadow>
-          <planeGeometry args={[5,5]}/>
-          <meshStandardMaterial color='hotpink'/>
+          <planeGeometry args={[50,50]}/>
+          <meshStandardMaterial color='#009A17'/>
         </mesh>
     </>
   )
