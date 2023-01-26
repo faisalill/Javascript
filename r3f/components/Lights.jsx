@@ -7,7 +7,7 @@ const Lights = ()=>{
     useHelper(lightRef,DirectionalLightHelper, 4, 'red')
     return (
         <>
-        <directionalLight ref={lightRef} position={[0,30,20]}
+        <directionalLight ref={lightRef} position={[0,20,20]}
         
         // scale={[5,5,5]}
         castShadow

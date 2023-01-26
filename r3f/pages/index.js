@@ -1,35 +1,23 @@
 import { OrbitControls, PerspectiveCamera, Stats, useTexture } from "@react-three/drei";
-import { Canvas, useLoader } from "@react-three/fiber";
-import { AnimatedBox } from "@/components/AnimtedBox";
+import { Canvas } from "@react-three/fiber";
 import Lights from "@/components/Lights";
 import Ground from "@/components/Ground";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import { useRef } from "react";
+import Tree from "@/components/Tree";
 
 
-const Tree = () =>{
-  const model = useLoader(GLTFLoader,'./models/Tree.glb')
- model.scene.traverse((object)=>{
-  if(object.isMesh){
-    object.castShadow = true;
-  }
- })
-  return (<primitive object={model.scene} />)
-}
-
-const TexturedSphere = ()=>{
-  const map = useTexture('./textures/metal_plate_diff_1k.png')
-  const normalMap = useTexture('./textures/metal_plate_nor_gl_1k.png')
-  const roughnessMap = useTexture('./textures/metal_plate_rough_1k.png')
-  return(
-    <>
-    <mesh  scale={[0.5,0.5,0.5]} position={[0,1,0]} castShadow>
-      <sphereGeometry />
-      <meshStandardMaterial map={map} normalMap={normalMap} roughnessMap={roughnessMap}/>
-    </mesh>
-    </>
-  )
-}
+// const TexturedSphere = ()=>{
+//   const map = useTexture('./textures/metal_plate_diff_1k.png')
+//   const normalMap = useTexture('./textures/metal_plate_nor_gl_1k.png')
+//   const roughnessMap = useTexture('./textures/metal_plate_rough_1k.png')
+//   return(
+//     <>
+//     <mesh  scale={[0.5,0.5,0.5]} position={[0,1,0]} castShadow>
+//       <sphereGeometry  />
+//       <meshStandardMaterial map={map} normalMap={normalMap} roughnessMap={roughnessMap}/>
+//     </mesh>
+//     </>
+//   )
+// }
 
 export default function Home() {
   const testing = true;
@@ -43,7 +31,7 @@ export default function Home() {
         {testing? <gridHelper args={[10,10]}/> : null}
         <OrbitControls />
         {/* <AnimatedBox isTesting={testing}/> */}
-        <TexturedSphere />
+        {/* <TexturedSphere /> */}
         <Tree  />
         <Lights />
        <Ground />
