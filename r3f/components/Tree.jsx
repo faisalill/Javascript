@@ -15,7 +15,7 @@ const Tree = ({boundary, count}) =>{
    })
  
     return (
-    <group position={[0,0,0]} >
+    <group position={[10,0,0]} >
      <object3D ref={treeRef}>
     <primitive object={model.scene.clone()} />
     </object3D>
