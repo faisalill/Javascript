@@ -14,8 +14,8 @@ export  const AnimatedBox = ({isTesting}) =>{
    });
    {isTesting? useHelper(meshRef,BoxHelper,'blue'):null}
 
-  return (<mesh ref={meshRef}>
-  <boxGeometry args={[1,1,1]} />
-  <meshStandardMaterial color='hotpink' />
+  return (<mesh ref={meshRef} scale={[1,1,1]}>
+  <sphereGeometry />
+  <meshStandardMaterial color={'purple'} wireframe />
   </mesh>)
 }
