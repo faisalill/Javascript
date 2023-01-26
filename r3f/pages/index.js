@@ -5,19 +5,7 @@ import Ground from "@/components/Ground";
 import Tree from "@/components/Tree";
 
 
-// const TexturedSphere = ()=>{
-//   const map = useTexture('./textures/metal_plate_diff_1k.png')
-//   const normalMap = useTexture('./textures/metal_plate_nor_gl_1k.png')
-//   const roughnessMap = useTexture('./textures/metal_plate_rough_1k.png')
-//   return(
-//     <>
-//     <mesh  scale={[0.5,0.5,0.5]} position={[0,1,0]} castShadow>
-//       <sphereGeometry  />
-//       <meshStandardMaterial map={map} normalMap={normalMap} roughnessMap={roughnessMap}/>
-//     </mesh>
-//     </>
-//   )
-// }
+
 
 export default function Home() {
   const testing = true;
@@ -30,8 +18,6 @@ export default function Home() {
         {testing? <Stats /> : null}
         {testing? <gridHelper args={[10,10]}/> : null}
         <OrbitControls />
-        {/* <AnimatedBox isTesting={testing}/> */}
-        {/* <TexturedSphere /> */}
         <Tree  />
         <Lights />
        <Ground />
