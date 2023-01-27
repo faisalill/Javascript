@@ -1,7 +1,7 @@
 import { useInput } from "./useInput"
 
 const { useGLTF, useAnimations } = require("@react-three/drei")
-const { useEffect } = require("react")
+const { useEffect, useRef } = require("react")
 
 const Player = ()=>{
   const model = useGLTF('./models/myPlayer.glb')
@@ -12,14 +12,29 @@ const Player = ()=>{
       object.castShadow = true
     }
   })
+ 
+  const currentAction = useRef('')
 
   useEffect(()=>{
-    console.log("forward",forward)
-    console.log("backward",backward)
-    console.log("left",left)
-    console.log("right",right)
-    console.log("shift",shift)
-    console.log("jump",jump)
+    let action = 'idle'
+    if(forward || backward || left || right){
+      action='walking'
+      if(shift){
+        action='running'
+      }
+    }
+    else if(jump){
+      action='jumping'
+    }
+
+    if(currentAction.current != action){
+      const nextAction = actions[action]
+      const current = actions[currentAction.current]
+      current?.fadeOut(0.2)
+      nextAction?.reset().fadeIn(0.2).play()
+      currentAction.current = action;
+    }
+
   },[forward,backward,left,right,shift,jump])
 
   return(
