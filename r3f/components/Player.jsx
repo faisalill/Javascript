@@ -42,7 +42,7 @@ const directionOffset = ({forward,backward,left,right})=>{
 
 
 const Player = ()=>{
-  const model = useGLTF('./models/myPlayer.glb')
+  const model = useGLTF('./models/player.glb')
   const {actions} = useAnimations(model.animations,model.scene)
    const {forward,backward,left,right,shift,jump} = useInput()
   model.scene.traverse((object)=>{
