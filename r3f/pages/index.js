@@ -8,14 +8,6 @@ import Player from "@/components/Player";
 
 
 export default function Home() {
-  // const [Action, setAction] = useState('idle')
-  // useEffect(()=>{
-  //   document.addEventListener('keydown',(e)=>{
-  //     if(e.key === 'w'){
-  //       console.log("presesed")
-  //     }
-  //   })
-  // },[])
   const testing = true;
   return (
     <>

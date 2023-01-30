@@ -121,7 +121,7 @@ const Player = ()=>{
       walkDirection.applyAxisAngle(rotatAngle,newDirectionOffset)
 
       //run/walk velocity
-      const velocity = currentAction.current ==='running' ? 10:5
+      const velocity = currentAction.current ==='running' ? 7:3
 
       //move model and camera
       const moveX = walkDirection.x * velocity * delta;
@@ -136,8 +136,7 @@ const Player = ()=>{
     <>
       <OrbitControls ref={controlsRef}/>
       <primitive object={model.scene}/>
-     
-      </>
+    </>
   )
 }
 export default Player;
