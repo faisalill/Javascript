@@ -1,7 +1,7 @@
 // There are two ways to create an object
 // First using object constructor syntax
 let newObject = new Object({
-    name: "JHon",
+    name: "Jhon",
     age: 2343,
 })
 // Second using object literal syntax
