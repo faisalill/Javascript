@@ -6,13 +6,14 @@ import Tree from "@/components/Tree";
 import { useEffect, useState } from "react";
 import Player from "@/components/Player";
 
-
 export default function Home() {
+useEffect(()=>{
   alert(`Controls: 
   W to move forward
   S to move backward
   A to move left
-  D to move right`);
+  D to move right`)
+}, [])
   const testing = true;
   return (
     <>
