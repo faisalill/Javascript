@@ -12,7 +12,8 @@ useEffect(()=>{
   W to move forward
   S to move backward
   A to move left
-  D to move right`)
+  D to move right
+  Click and drag mouse to look around`)
 }, [])
   const testing = true;
   return (
