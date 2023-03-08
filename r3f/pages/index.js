@@ -8,6 +8,11 @@ import Player from "@/components/Player";
 
 
 export default function Home() {
+  alert(`Controls: 
+  W to move forward
+  S to move backward
+  A to move left
+  D to move right`);
   const testing = true;
   return (
     <>
