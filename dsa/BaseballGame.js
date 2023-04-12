@@ -1,4 +1,5 @@
 // Question: 
+// https://leetcode.com/problems/baseball-game/
 // Input: ops = ["5","2","C","D","+"]
 // Output: 30
 // Explanation:
@@ -10,41 +11,23 @@
 // The total sum is 5 + 10 + 15 = 30.
 
 var calPoints = function(ops) {
-    const stack = [];
-    
-    for(let i=0; i<ops.length; i++){
-        
-        switch(ops[i]){
-            case 'D': {
-                // Record a new score that is double the previous score. 
-                // It is guaranteed there will always be a previous score.
-                const last = stack[stack.length - 1];
-                stack.push(last * 2);
-                break;
-            }
-                
-            case 'C':{
-                // Invalidate the previous score, removing it from the record. 
-                // It is guaranteed there will always be a previous score.
-                stack.pop();
-                break;
-            }
-                
-            case '+': {
-                // Record a new score that is the sum of the previous two scores. 
-                // It is guaranteed there will always be two previous scores.
-                const one = stack[stack.length - 2];
-                const two = stack[stack.length - 1];
-                stack.push(one + two);
-                break;
-            }
-                
-            default: {
-                stack.push(Number(ops[i]))
-                break;
-            }
-        }
-    }
-    
-    return stack.reduce((prev, cur) => prev + cur, 0);
+    let ans = [];
+  for (let i = 0; i<ops.length; i++){
+      if(ops[i]==='+'){
+          const lastScore = ans[ans.length-1]
+          const secondLastScore = ans[ans.length-2]
+          ans.push(lastScore + secondLastScore)
+      }
+       else if(ops[i]==='D'){
+          const lastScore = ans[ans.length-1]
+          ans.push(2 * lastScore )
+      }
+      else if(ops[i]==='C'){
+          ans.pop()
+      }
+      else{
+          ans.push(Number(ops[i]))
+      }
+  }
+  return ans.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
 };
