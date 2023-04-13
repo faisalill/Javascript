@@ -124,3 +124,52 @@ var containsDuplicate = function(nums) {
     return false
  };
  //ends
+ //start
+//Reverse Linked List
+//https://leetcode.com/problems/reverse-linked-list/
+// Given the head of a singly linked list, reverse the list, and return the reversed list.
+//Solution:
+var reverseList = function(head) {
+    if (head === null){return head}
+    let arr =[];
+    while(head){
+        arr.push(head)
+        head = head.next
+    }
+    arr[0].next = null
+    for (let i =1; i<arr.length; i++){
+        arr[i].next = arr[i-1]
+    }
+    return arr[arr.length-1]
+};
+ //ends
+ //start
+//Merge Two Sorted Lists
+//https://leetcode.com/problems/merge-two-sorted-lists/
+// Merge two sorted linked lists and return it as a sorted list. The list should be made by splicing together the nodes of the first two lists.
+//Solution:
+var mergeTwoLists = function(l1, l2) {
+    let list = new ListNode()
+    let head = list
+    
+    while (l1 !== null && l2 !== null) {
+	
+        if (l1.val < l2.val) {
+            list.next = new ListNode(l1.val)
+            l1 = l1.next
+        } else {
+            list.next = new ListNode(l2.val)
+            l2 = l2.next
+        }
+        
+        list = list.next
+    }
+    
+    if (l1 !== null)
+        list.next = l1
+    if (l2 !== null)
+        list.next = l2
+    
+    return head.next
+};
+ //ends
