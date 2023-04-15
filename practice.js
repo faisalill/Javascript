@@ -173,3 +173,137 @@ var mergeTwoLists = function(l1, l2) {
     return head.next
 };
  //ends
+  //start
+//Number of Students Unable to Eat Lunch
+//https://leetcode.com/problems/number-of-students-unable-to-eat-lunch/
+// The school cafeteria offers circular and square sandwiches at lunch break, referred to by numbers 0 and 1 respectively. All students stand in a queue. Each student either prefers square or circular sandwiches.
+//Solution:
+var countStudents = function(students, sandwiches) {
+    let count = 0;
+    while (students.length > 0) {
+        if (students[0] === sandwiches[0]) {
+            students.shift();
+            sandwiches.shift();
+            count = 0;
+        } else {
+            students.push(students.shift());
+            count++;
+        }
+        if (count === students.length) {
+            return count;
+        }
+    }
+    return count;
+};
+//ends
+//start
+//Implement Stack using Queues
+//https://leetcode.com/problems/implement-stack-using-queues/
+// Implement a last-in-first-out (LIFO) stack using only two queues. The implemented stack should support all the functions of a normal stack (push, top, pop, and empty).
+// Implement the MyStack class:
+// void push(int x) Pushes element x to the top of the stack.
+// int pop() Removes the element on the top of the stack and returns it.
+// int top() Returns the element on the top of the stack.
+// boolean empty() Returns true if the stack is empty, false otherwise.
+//Solution:
+var MyStack = function() {
+    this.stack = []
+};
+
+/** 
+ * @param {number} x
+ * @return {void}
+ */
+MyStack.prototype.push = function(x) {
+   this.stack.push(x)    
+};
+
+/**
+ * @return {number}
+ */
+MyStack.prototype.pop = function() {
+    return this.stack.pop()
+};
+
+/**
+ * @return {number}
+ */
+MyStack.prototype.top = function() {
+    return this.stack[this.stack.length -1]
+};
+
+/**
+ * @return {boolean}
+ */
+MyStack.prototype.empty = function() {
+    if(this.stack.length === 0){
+        return true
+    }
+    else{
+        return false
+    }
+};
+//end
+//start
+// Fibonacci Number
+//https://leetcode.com/problems/fibonacci-number/
+// The Fibonacci numbers, commonly denoted F(n) form a sequence, called the Fibonacci sequence, such that each number is the sum of the two preceding ones, starting from 0 and 1. That is,
+//Solution:
+/**
+ * @param {number} n
+ * @return {number}
+ */
+var fib = function(n) {
+    let firstNum = 0
+    let secondNum = 1
+    let sum = 0
+    if(n===0){
+        return 0
+    }
+    else if(n===1){
+        return 1
+    }
+    else{
+        for(let i = 1; i<n; i++){
+            sum = firstNum + secondNum
+            firstNum = secondNum
+            secondNum = sum
+        }
+        return sum
+    }
+};
+//end
+//start
+//Climbing Stairs
+//https://leetcode.com/problems/climbing-stairs/
+// You are climbing a staircase. It takes n steps to reach the top.
+// Each time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?
+//Solution:
+/**
+ * @param {number} n
+ * @return {number}
+ */
+var climbStairs = function(n) {
+    let firstNum = 1
+    let secondNum = 2
+    let sum = 0
+    if(n===1){
+        return 1
+    }
+    else if(n===2){
+        return 2
+    }
+    else{
+        for(let i = 2; i<n; i++){
+            sum = firstNum + secondNum
+            firstNum = secondNum
+            secondNum = sum
+        }
+        return sum
+    }
+};
+//end
+
+
+
+
