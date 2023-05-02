@@ -420,5 +420,25 @@ var strStr = function(haystack, needle) {
     return haystack.indexOf(needle)
 };
 //end
+//start
+// Merge Strings Alternately
+//https://leetcode.com/problems/merge-strings-alternately/
+// You are given two strings word1 and word2. Merge the strings by adding letters in alternating order, starting with word1. If a string is longer than the other, append the additional letters onto the end of the merged string.
+// Return the merged string.
+//Solution:
+var mergeAlternately = function(word1, word2) {
+    const longerWord = word1.length > word2.length ? word1 : word2
+    let ans = "";
+    for(let i =0; i<longerWord.length ; i++){
+    if(word1[i]){
+      ans = ans.concat(word1[i])
+    }
+     if (word2[i]){
+        ans =  ans.concat(word2[i])
+    }
+    }
+    return ans
+};
+//end
 
 
