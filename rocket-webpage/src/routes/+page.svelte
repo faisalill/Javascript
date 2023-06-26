@@ -6,6 +6,7 @@
 	import CeoTestimonial from "../components/CeoTestimonial.svelte";
 	import Footer from "../components/Footer.svelte";
 	import ContactSection from "../components/ContactSection.svelte";
+	import Timeline from "../components/Timeline.svelte";
 
 	let teamMembers = [
 		{
@@ -108,16 +109,20 @@
 </Background>
 
 <Background side="tr">
+<Timeline />
+</Background>
+
+<Background side="tr">
 <FeatureSection />
 </Background>
 
-<Background side="tl">
+<!-- <Background side="tl">
 <TeamSection teamMembers={teamMembers} />
-</Background>
+</Background> -->
 
-<Background side ="none">
+<!-- <Background side ="none">
 <CeoTestimonial />
-</Background>
+</Background> -->
 
 <Background side="tr">
 <ContactSection />

@@ -42,9 +42,10 @@
 			Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit
 			sunt amet fugiat veniam occaecat fugiat aliqua.
 		</p>
-		<div class="mt-10 flex items-center gap-x-6">
-			<a href="/" class=""><img class="w-48" src="/google-play-badge.png" alt="Your Company" /></a>
-			<a href="/" class=""><img class="w-44" src="/app-store-badge.svg" alt="Your Company" /></a>
+		<div class=" flex items-center gap-x-6">
+			<!-- <a href="/" class=""><img class="w-48" src="/google-play-badge.png" alt="Your Company" /></a> -->
+			<!-- <a href="/" class=""><img class="w-44" src="/app-store-badge.svg" alt="Your Company" /></a> -->
+			<a href="/" class=""><img class="w-44" src="/discord-logo.svg" alt="Your Company" /></a>
 		</div>
 	</div>
 	<div
