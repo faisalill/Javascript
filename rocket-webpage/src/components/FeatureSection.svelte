@@ -5,54 +5,22 @@
 <div class=" py-24 sm:py-32">
 	<div class="mx-auto max-w-7xl px-6 lg:px-8">
 		<div class="mx-auto max-w-2xl lg:text-center">
-			<h2 class="text-lg font-semibold leading-8 tracking-tight text-purple">Learn faster</h2>
-			<p class="mt-2 text-3xl font-bold tracking-tight text-heading sm:text-4xl">
+			<h2 class="text-5xl font-semibold leading-8 tracking-tight text-purple">What your in for???</h2>
+			<!-- <p class="mt-2 text-3xl font-bold tracking-tight text-heading sm:text-4xl">
 				DKLFjdkfldsjflkj
 			</p>
 			<p class="mt-6 text-lg leading-8 text-dark-description">
 				Quis tellus eget adipiscing convallis sit sit eget aliquet quis. Suspendisse eget egestas a
 				elementum pulvinar et feugiat blandit at. In mi viverra elit nunc.
-			</p>
+			</p> -->
 		</div>
-		<div class="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
+		<div class="mx-auto max-w-2xl mt-16 sm:mt-20 lg:mt-24 lg:max-w-none">
 			<dl class="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-3">
-				<div class="flex flex-col">
-					<dt class="flex items-center gap-x-3 text-base font-semibold leading-7 text-description">
-						<!-- Heroicon name: mini/cloud-arrow-up -->
-						<svg
-							class="h-5 w-5 flex-none text-purple"
-							xmlns="http://www.w3.org/2000/svg"
-							viewBox="0 0 20 20"
-							fill="currentColor"
-							aria-hidden="true"
-						>
-							<path
-								fill-rule="evenodd"
-								d="M5.5 17a4.5 4.5 0 01-1.44-8.765 4.5 4.5 0 018.302-3.046 3.5 3.5 0 014.504 4.272A4 4 0 0115 17H5.5zm3.75-2.75a.75.75 0 001.5 0V9.66l1.95 2.1a.75.75 0 101.1-1.02l-3.25-3.5a.75.75 0 00-1.1 0l-3.25 3.5a.75.75 0 101.1 1.02l1.95-2.1v4.59z"
-								clip-rule="evenodd"
-							/>
-						</svg>
-						fdlksjfsd
-					</dt>
-					<dd class="mt-4 flex flex-auto flex-col text-base leading-7 text-dark-description">
-						<p class="flex-auto">
-							Commodo nec sagittis tortor mauris sed. Turpis tortor quis scelerisque diam id
-							accumsan nullam tempus. Pulvinar etiam lacus volutpat eu. Phasellus praesent ligula
-							sit faucibus.
-						</p>
-						<p class="mt-6">
-							<a href="/" class="text-base font-semibold leading-7 text-purple"
-								>Learn more <span aria-hidden="true">→</span></a
-							>
-						</p>
-					</dd>
-				</div>
-
 				<div class="flex flex-col">
 					<dt class="flex items-center gap-x-3 text-base font-semibold leading-7 text-description">
 						<!-- Heroicon name: mini/lock-closed -->
 						<svg
-							class="h-5 w-5 flex-none text-purple"
+							class="h-6 w-6 flex-none text-purple"
 							xmlns="http://www.w3.org/2000/svg"
 							viewBox="0 0 20 20"
 							fill="currentColor"
@@ -64,17 +32,38 @@
 								clip-rule="evenodd"
 							/>
 						</svg>
-						sdlfkdjslfj
+						Unbiased Algorithm
 					</dt>
 					<dd class="mt-4 flex flex-auto flex-col text-base leading-7 text-dark-description">
 						<p class="flex-auto">
-							Pellentesque enim a commodo malesuada turpis eleifend risus. Facilisis donec placerat
-							sapien consequat tempor fermentum nibh.
+							Makes the User get the best recommendation based on the priorities across all the
+							E-Learning Platforms
 						</p>
-						<p class="mt-6">
-							<a href="/" class="text-base font-semibold leading-7 text-purple"
-								>Learn more <span aria-hidden="true">→</span></a
-							>
+					</dd>
+				</div>
+
+				<div class="flex flex-col">
+					<dt class="flex items-center gap-x-3 text-base font-semibold leading-7 text-description">
+						<!-- Heroicon name: bookmark-sqaure -->
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							fill="none"
+							viewBox="0 0 24 24"
+							stroke-width="1.5"
+							stroke="currentColor"
+							class="h-6 w-6 flex-none text-purple"
+						>
+							<path
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								d="M16.5 3.75V16.5L12 14.25 7.5 16.5V3.75m9 0H18A2.25 2.25 0 0120.25 6v12A2.25 2.25 0 0118 20.25H6A2.25 2.25 0 013.75 18V6A2.25 2.25 0 016 3.75h1.5m9 0h-9"
+							/>
+						</svg>
+						Targeted Learning
+					</dt>
+					<dd class="mt-4 flex flex-auto flex-col text-base leading-7 text-dark-description">
+						<p class="flex-auto">
+							No Roadblocks in Learning from the Overwhelming Internet Across all the E-Learning Platforms and Social Media 
 						</p>
 					</dd>
 				</div>
@@ -95,17 +84,11 @@
 								clip-rule="evenodd"
 							/>
 						</svg>
-						Simple queues
+						Data Driven Personalized Learning
 					</dt>
 					<dd class="mt-4 flex flex-auto flex-col text-base leading-7 text-dark-description">
 						<p class="flex-auto">
-							Pellentesque sit elit congue ante nec amet. Dolor aenean curabitur viverra suspendisse
-							iaculis eget. Nec mollis placerat ultricies euismod ut condimentum.
-						</p>
-						<p class="mt-6">
-							<a href="/" class="text-base font-semibold leading-7 text-purple"
-								>Learn more <span aria-hidden="true">→</span></a
-							>
+							Give you the best learning experience based on the Data with newage technology like Machine Learning and Artificial Intelligence.
 						</p>
 					</dd>
 				</div>
