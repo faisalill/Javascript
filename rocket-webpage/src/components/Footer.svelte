@@ -5,7 +5,7 @@
 	</aside>
 	<nav>
 		<header class="footer-title">COMPANY</header>
-		<a class="link link-hover">About</a>
+		<a class="link link-hover" href="/about">About</a>
 		<a class="link link-hover">Privacy Policy</a>
 		<a class="link link-hover">Terms & Conditions</a>
 	</nav>
