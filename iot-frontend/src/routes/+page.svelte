@@ -1,6 +1,5 @@
 <script>
   import { Button, Modal, Input, Label, Helper } from "flowbite-svelte";
-  import axios from "axios";
   let distance = null;
   let volume = null;
   let popupModal = false;
